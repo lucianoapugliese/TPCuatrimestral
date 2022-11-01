@@ -2,6 +2,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>Defautl</h1>
-    <asp:GridView ID="gvEjemplo1" runat="server"></asp:GridView>
+    <h1>Inicio</h1>
+    
 </asp:Content>

@@ -67,6 +67,8 @@
     <Content Include="Global.asax" />
     <Content Include="Views\Default.aspx" />
     <Content Include="Views\Error.aspx" />
+    <Content Include="Views\ListaMedicos.aspx" />
+    <Content Include="Views\ListaTurnos.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +105,20 @@
     </Compile>
     <Compile Include="Views\Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ListaMedicos.aspx.cs">
+      <DependentUpon>ListaMedicos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ListaMedicos.aspx.designer.cs">
+      <DependentUpon>ListaMedicos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ListaTurnos.aspx.cs">
+      <DependentUpon>ListaTurnos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ListaTurnos.aspx.designer.cs">
+      <DependentUpon>ListaTurnos.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

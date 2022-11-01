@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Clinica.Dominio.Personas;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,26 @@ namespace Clinica.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+			try
+			{
+                Profecional profecional = new Profecional(1,
+                11111111,
+                "Facu",
+                "Amarilla",
+                "prof@mail.com",
+                DateTime.Now,
+                new Especialidad(0, "Programar")
+                );
 
+                List<Profecional> ls = new List<Profecional>() { profecional };
+                gvEjemplo1.DataSource = ls;
+                gvEjemplo1.DataBind();
+            }
+			catch (Exception ex)
+			{
+                Session.Add("error", ex);
+                Response.Redirect("Error.aspx", false);
+            }
         }
     }
 }

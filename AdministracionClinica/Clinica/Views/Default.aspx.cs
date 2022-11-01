@@ -14,18 +14,7 @@ namespace Clinica.Views
         {
             try
             {
-                Profecional profecional = new Profecional(1,
-                11111111,
-                "Facu",
-                "Amarilla",
-                "prof@mail.com",
-                DateTime.Now,
-                new Especialidad(0, "programador")
-                );
 
-                List<Profecional> ls = new List<Profecional>() { profecional };
-                gvEjemplo1.DataSource = ls;
-                gvEjemplo1.DataBind();
             }
             catch (Exception ex)
             {
