@@ -69,7 +69,9 @@
     <Content Include="Global.asax" />
     <Content Include="Views\Default.aspx" />
     <Content Include="Views\Error.aspx" />
+    <Content Include="Views\FormUsuarios.aspx" />
     <Content Include="Views\ListaMedicos.aspx" />
+    <Content Include="Views\ListaPacientes.aspx" />
     <Content Include="Views\ListaTurnos.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -109,12 +111,26 @@
     <Compile Include="Views\Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\FormUsuarios.aspx.cs">
+      <DependentUpon>FormUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\FormUsuarios.aspx.designer.cs">
+      <DependentUpon>FormUsuarios.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\ListaMedicos.aspx.cs">
       <DependentUpon>ListaMedicos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\ListaMedicos.aspx.designer.cs">
       <DependentUpon>ListaMedicos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ListaPacientes.aspx.cs">
+      <DependentUpon>ListaPacientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ListaPacientes.aspx.designer.cs">
+      <DependentUpon>ListaPacientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ListaTurnos.aspx.cs">
       <DependentUpon>ListaTurnos.aspx</DependentUpon>

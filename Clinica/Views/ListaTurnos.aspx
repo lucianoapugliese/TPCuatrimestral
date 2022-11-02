@@ -34,6 +34,11 @@
     </div>
     <div class="row">
         <div class="col-3">
+            <asp:Button Text="Buscar" runat="server" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
             <asp:Label Text="TURNOS DISPONIBLES:" runat="server" />
         </div>
     </div>

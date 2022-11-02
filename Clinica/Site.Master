@@ -10,6 +10,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+     <!-- inicio -->
     <form id="form1" runat="server">
         <!-- NAV -->
         <nav class="navbar navbar-expand-lg bg-primary">
@@ -23,6 +24,7 @@
                         <a class="nav-link active" href="Default.aspx">Home</a>
                         <a class="nav-link" href="ListaTurnos.aspx">Turnos</a>
                         <a class="nav-link" href="ListaMedicos.aspx">Medicos</a>
+                        <a class="nav-link" href="FormUsuarios.aspx">Formulario</a>
                     </div>
                 </div>
             </div>
@@ -33,5 +35,6 @@
             </asp:ContentPlaceHolder>
         </div>
     </form>
+    <!-- fin -->
 </body>
 </html>

@@ -11,25 +11,34 @@ namespace Clinica.Views
 {
 
 
-    public partial class Default
+    public partial class FormUsuarios
     {
 
         /// <summary>
-        /// ddlTipoUsario control.
+        /// ddlTipoFormUsuarios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTipoUsario;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTipoFormUsuarios;
 
         /// <summary>
-        /// btnIngreso control.
+        /// btnAceptar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnIngreso;
+        protected global::System.Web.UI.WebControls.Button btnAceptar;
+
+        /// <summary>
+        /// lblAdvertencia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAdvertencia;
     }
 }
