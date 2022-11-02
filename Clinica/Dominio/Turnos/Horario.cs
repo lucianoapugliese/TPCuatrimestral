@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 
 namespace Clinica.Dominio
 {
     public class Horario
     {
+        //PROPIEDADES:
         public int Id { get; set; }
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFin { get; set; }
@@ -14,8 +16,15 @@ namespace Clinica.Dominio
         public DateTime HoraFin { get; set; }
         public int DiaDeTurno { get; set; }
         public int Intervalo { get; set; }
+        public bool Ocupado { get; set; }
+        public string HoraTurno 
+        { 
+            get { return $"{HoraInicial.Hour}:{HoraInicial.Minute}"; } 
+        }
 
-        public Horario(int id, 
+        //CONSTRUCTOR:
+        public Horario(int id,
+            bool ocupado,
             DateTime fechaInicio, 
             DateTime fechaFin, 
             DateTime horaInicial, 
@@ -24,6 +33,7 @@ namespace Clinica.Dominio
             int intervalo)
         {
             Id = id;
+            Ocupado = ocupado;
             FechaInicio = fechaInicio;
             FechaFin = fechaFin;
             HoraInicial = horaInicial;

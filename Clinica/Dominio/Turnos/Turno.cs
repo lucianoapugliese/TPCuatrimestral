@@ -8,6 +8,7 @@ namespace Clinica.Dominio
 {
     public class Turno
     {
+        //PROPIEDADES:
         public int Id { get; set; }
         public int IdPaciente { get; set; }
         public int IdProfecional { get; set; }
@@ -15,6 +16,7 @@ namespace Clinica.Dominio
         public Horario Horario { get; set; }
         public Procedimiento Procedimiento { get; set; }
 
+        //CONSTRUCTOR:
         public Turno(int id, 
             int idPaciente, 
             int idProfecional, 
