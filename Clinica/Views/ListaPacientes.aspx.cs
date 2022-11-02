@@ -15,8 +15,8 @@ namespace Clinica.Views
             List<Paciente> listaPacientes = new List<Paciente>(){ 
                 new Paciente(0, "Casimiro", "Tuerto", 123456789, "mimail@mail.com", DateTime.Parse("1/1/1900"))
             };
-            formPacientes2.DataSource = listaPacientes;
-            formPacientes2.DataBind();
+            gvListaPacientes.DataSource = listaPacientes;
+            gvListaPacientes.DataBind();
         }
     }
 }
