@@ -12,18 +12,23 @@
 
     <!-- Lista -->
     <h3>Lista:</h3>
-    <asp:GridView ID="gvListaPacientes" 
-        CssClass="table" 
+    <asp:GridView ID="gvListaPacientes"
+        DataKeyNames="IdPaciente"
+        CssClass="table"
         AutoGenerateColumns="false"
+        OnRowCommand="gvListaPacientes_RowCommand"
         runat="server">
         <Columns>
-            <asp:BoundField HeaderText="ID" DataField="IdPaciente" />
+            <asp:BoundField HeaderText="Numero de Paciente" DataField="IdPaciente" />
             <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
             <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
             <asp:BoundField HeaderText="DNI" DataField="DNI" />
             <asp:BoundField HeaderText="Mail" DataField="Mail" />
             <asp:BoundField HeaderText="Fecha Nacimiento" DataField="FechaNac" />
+            <asp:ButtonField ButtonType="Button" CommandName="seleccionPaciente" Text="Seleccionar"/>
         </Columns>
     </asp:GridView>
     <!-- new Paciente(0, "Casimiro", "Tuerto", 123456789, "mimail@mail.com", DateTime.Parse("1/1/1900")) -->
+
+
 </asp:Content>
