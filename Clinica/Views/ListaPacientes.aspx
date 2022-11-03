@@ -5,30 +5,43 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <h1>Lista Pacientes</h1>
     <!-- Filtros -->
-    <h3>(Aca faltan filtros)</h3>
-    <p>....filtros varios....</p>
+    <div class="row">
+        <div class="col-6">
+            <h1>Lista Pacientes</h1>
+            <h3>(Aca faltan filtros)</h3>
+            <p>....filtros varios....</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <p>ej filtro id:</p>
+            <asp:TextBox ID="tbxId" CssClass="form-control" Text="" runat="server" />
+            <asp:Button ID="btnFiltrar" Text="Filtrar" CssClass="btn btn-primary" OnClick="btnFiltrar_Click" runat="server" />
+        </div>
+    </div>
 
     <!-- Lista -->
-    <h3>Lista:</h3>
-    <asp:GridView ID="gvListaPacientes"
-        DataKeyNames="IdPaciente"
-        CssClass="table"
-        AutoGenerateColumns="false"
-        OnRowCommand="gvListaPacientes_RowCommand"
-        runat="server">
-        <Columns>
-            <asp:BoundField HeaderText="Numero de Paciente" DataField="IdPaciente" />
-            <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-            <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
-            <asp:BoundField HeaderText="DNI" DataField="DNI" />
-            <asp:BoundField HeaderText="Mail" DataField="Mail" />
-            <asp:BoundField HeaderText="Fecha Nacimiento" DataField="FechaNac" />
-            <asp:ButtonField ButtonType="Button" CommandName="seleccionPaciente" Text="Seleccionar"/>
-        </Columns>
-    </asp:GridView>
-    <!-- new Paciente(0, "Casimiro", "Tuerto", 123456789, "mimail@mail.com", DateTime.Parse("1/1/1900")) -->
+    <div class="row">
+        <h3>Lista:</h3>
+        <asp:GridView ID="gvListaPacientes"
+            DataKeyNames="IdPaciente"
+            CssClass="table"
+            AutoGenerateColumns="false"
+            OnRowCommand="gvListaPacientes_RowCommand"
+            runat="server">
+            <Columns>
+                <asp:BoundField HeaderText="Numero de Paciente" DataField="IdPaciente" />
+                <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+                <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
+                <asp:BoundField HeaderText="DNI" DataField="DNI" />
+                <asp:BoundField HeaderText="Mail" DataField="Mail" />
+                <asp:BoundField HeaderText="Fecha Nacimiento" DataField="FechaNac" />
+                <asp:ButtonField ButtonType="Button" CommandName="seleccionPaciente" Text="Seleccionar" />
+            </Columns>
+        </asp:GridView>
+    </div>
 
+    <!-- new Paciente(0, "Casimiro", "Tuerto", 123456789, "mimail@mail.com", DateTime.Parse("1/1/1900")) -->
 
 </asp:Content>

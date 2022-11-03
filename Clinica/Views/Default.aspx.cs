@@ -32,7 +32,11 @@ namespace Clinica.Views
 
         protected void btnIngreso_Click(object sender, EventArgs e)
         {
-            Seleccion = ddlTipoUsario.SelectedValue;
+            if(tbxContraseña.Text != "")
+            {
+                lblNombreUsuario.Text = tbxUsuario.Text;
+                Seleccion = ddlTipoUsario.SelectedValue;
+            }
         }
     }
 }

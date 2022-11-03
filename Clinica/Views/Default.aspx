@@ -22,17 +22,18 @@
     <div class="row">
         <div class="input-group mb-3">
             <span class="input-group-text">Usuario</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Pepito">
+            <asp:TextBox ID="tbxUsuario" CssClass="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" runat="server" />  
             <span class="input-group-text">Contraseña</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Navajas">
+            <asp:TextBox ID="tbxContraseña" TextMode="Password" CssClass="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" runat="server" />  
         </div>
         <div class="input-group">
             <asp:Button ID="btnIngreso" Text="Ingresar" CssClass="btn btn-primary" OnClick="btnIngreso_Click" runat="server" />
         </div>
     </div>
+    <!-- Opciones: -->
     <%if(Seleccion == "Recepcionista"){%>
     <div class="row">
-        <h4>Bienvenido Pepito Navajas</h4>
+        <h4>Bienvenido <asp:Label ID="lblNombreUsuario" Text="" runat="server" /> </h4>
         <div class="col">
             <a href="#" class="btn btn-primary">Ir a Lista Turnos</a>
             <a href="ListaPacientes.aspx" class="btn btn-primary">Ir a Lista Pacientes</a>
