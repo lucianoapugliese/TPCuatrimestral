@@ -26,5 +26,10 @@ namespace Clinica.Dominio.Personas
             FechaNac = fechaNac;
             Especialidad = especialidad;
         }
+
+        public Profecional()
+        {
+            Especialidad = new Especialidad();
+        }
     }
 }

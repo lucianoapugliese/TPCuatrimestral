@@ -24,5 +24,9 @@ namespace Clinica.Dominio.Personas
             Mail = mail;
             FechaNac = fechaNac;
         }
+
+        public Paciente()
+        {
+        }
     }
 }

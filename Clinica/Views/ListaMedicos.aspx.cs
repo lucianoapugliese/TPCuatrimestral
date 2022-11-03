@@ -1,4 +1,5 @@
 ﻿using Clinica.Dominio.Personas;
+using Clinica.Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,18 +15,13 @@ namespace Clinica.Views
         {
 			try
 			{
-                Profecional profecional = new Profecional(1,
-                11111111,
-                "Facu",
-                "Amarilla",
-                "prof@mail.com",
-                DateTime.Now,
-                new Especialidad(0, "Programar")
-                );
-
-                List<Profecional> ls = new List<Profecional>() { profecional };
-                gvEjemplo1.DataSource = ls;
-                gvEjemplo1.DataBind();
+                if(!IsPostBack)
+                {
+                    NegocioMedicos negocioMedicos = new NegocioMedicos();
+                    List<Profecional> ls = negocioMedicos.listarMedicos();
+                    gvEjemplo1.DataSource = ls;
+                    gvEjemplo1.DataBind();
+                }
             }
 			catch (Exception ex)
 			{

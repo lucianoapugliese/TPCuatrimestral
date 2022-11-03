@@ -13,5 +13,9 @@
             IdEspecialidad = idEspecialidad;
             Nombre = nombre;
         }
+
+        public Especialidad()
+        {
+        }
     }
 }

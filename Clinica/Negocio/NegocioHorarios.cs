@@ -33,10 +33,6 @@ namespace Clinica.Negocio
         private void cargarTurnos()
         {
             
-            foreach (var item in listaHorarios)
-            {
-
-            }
         }
     }
 }

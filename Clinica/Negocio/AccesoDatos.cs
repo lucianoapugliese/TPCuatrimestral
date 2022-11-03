@@ -15,7 +15,7 @@ namespace Clinica.Dominio
         public SqlDataReader Lector { get { return _reader; } }
 
         //Constructor:
-        public AccesoDatos (string cadenaConexion)
+        public AccesoDatos (string cadenaConexion = "server=.; database = CLINICA_DB; integrated security = true")
         {
             try
             {
@@ -53,7 +53,7 @@ namespace Clinica.Dominio
         {
             try
             {
-                if (_reader == null)
+                if (_reader != null)
                     _reader.Close();
                 if(_command.Parameters.Count > 0)
                     _command.Parameters.Clear();
