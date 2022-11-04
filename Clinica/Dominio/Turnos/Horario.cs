@@ -12,14 +12,14 @@ namespace Clinica.Dominio
         public int Id { get; set; }
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFin { get; set; }
-        public DateTime HoraInicial { get; set; }
-        public DateTime HoraFin { get; set; }
+        public string HoraInicial { get; set; }
+        public string HoraFin { get; set; }
         public int DiaDeTurno { get; set; }
         public int Intervalo { get; set; }
         public bool Ocupado { get; set; }
         public string HoraTurno 
         { 
-            get { return $"{HoraInicial.Hour}:{HoraInicial.Minute}"; } 
+            get { return $"{HoraInicial}"; } 
         }
 
         //CONSTRUCTOR:
@@ -27,8 +27,8 @@ namespace Clinica.Dominio
             bool ocupado,
             DateTime fechaInicio, 
             DateTime fechaFin, 
-            DateTime horaInicial, 
-            DateTime horaFin, 
+            string horaInicial, 
+            string horaFin, 
             int diaDeTurno, 
             int intervalo)
         {
@@ -40,6 +40,10 @@ namespace Clinica.Dominio
             HoraFin = horaFin;
             DiaDeTurno = diaDeTurno;
             Intervalo = intervalo;
+        }
+
+        public Horario()
+        {
         }
     }
 }

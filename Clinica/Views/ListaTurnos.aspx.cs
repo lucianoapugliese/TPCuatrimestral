@@ -30,7 +30,7 @@ namespace Clinica.Views
 			catch (Exception ex)
 			{
                 Session.Add("error", ex);
-                Response.Redirect("Error.asxp", false);
+                Response.Redirect("Error.asxp", true);
 			}
         }
 

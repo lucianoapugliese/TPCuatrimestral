@@ -2,7 +2,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Timers;
 using System.Web;
 
 namespace Clinica.Negocio
@@ -19,16 +21,52 @@ namespace Clinica.Negocio
         //Listar Horarios Libres:
         public List<Horario> HorariosLibres()
         {
-            //Suponemos que traemos la lista de dias libres??
-            listaHorarios = new List<Horario>() {
-                new Horario(0, true, DateTime.Today, DateTime.Today, DateTime.Now, DateTime.Now, 1, 0),
-                new Horario(1, false, DateTime.Today, DateTime.Today, DateTime.Now, DateTime.Now, 2, 0),
-                new Horario(2, true, DateTime.Today, DateTime.Today, DateTime.Now, DateTime.Now, 2, 0),
-                new Horario(3, true, DateTime.Today, DateTime.Today, DateTime.Now, DateTime.Now, 4, 1),
-                new Horario(4, false, DateTime.Today, DateTime.Today, DateTime.Now, DateTime.Now, 5, 1),
-                new Horario(5, false, DateTime.Today, DateTime.Today, DateTime.Now, DateTime.Now, 5, 1),
-                new Horario(6, true, DateTime.Today, DateTime.Today, DateTime.Now, DateTime.Now, 6, 1)};
-            return listaHorarios;
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                Horario horario;
+                listaHorarios = new List<Horario>();
+                datos.setQuery("SELECT IDHorario, FechaInicio as 'Dia', HoraInicio, HoraFin, DiaDeLaSemana, Intervalo FROM Horarios");
+                datos.ejectuarLectura();
+                while(datos.Lector.Read())
+                {
+                    horario = new Horario();
+                    horario.Id = Convert.ToInt16(datos.Lector["IDHorario"]);
+
+                    if (datos.Lector["Dia"] != null)
+                        horario.FechaInicio = Convert.ToDateTime(datos.Lector["Dia"]);
+
+                    if (datos.Lector["HoraInicio"] != null)
+                        horario.HoraInicial = datos.Lector["HoraInicio"].ToString();
+
+                    if (datos.Lector["HoraFin"] != null)
+                        horario.HoraFin = datos.Lector["HoraFin"].ToString();
+
+                    if (datos.Lector["DiaDeLaSemana"] != null)
+                        horario.DiaDeTurno = Convert.ToInt16(datos.Lector["DiaDeLaSemana"]);
+
+                    if (datos.Lector["Intervalo"] != null)
+                        horario.Intervalo = Convert.ToInt16(datos.Lector["Intervalo"]);
+
+                    //Aca se contrastaria si el hs esta ocupado o no
+                    horario.Ocupado = false;
+
+                    listaHorarios.Add(horario);
+                }
+                return listaHorarios;
+            }
+            catch(SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();   
+            }
         }
 
         private void cargarTurnos()

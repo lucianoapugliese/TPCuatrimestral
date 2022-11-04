@@ -62,8 +62,8 @@ CREATE TABLE Horarios (
 IDHorario INT PRIMARY KEY IDENTITY (1,1),
 FechaInicio DATE NOT NULL,
 FechaFin DATE NOT NULL,
-HoraInicio VARCHAR(6) NOT NULL,
-HoraFin VARCHAR(6) NOT NULL,
+HoraInicio VARCHAR(6) NOT NULL, -- cambiar a date
+HoraFin VARCHAR(6) NOT NULL, -- cambiar a date
 DiaDeLaSemana TINYINT NOT NULL, -- TINYINT O VARCHAR??
 Intervalo SMALLINT NOT NULL
 )
@@ -84,6 +84,9 @@ Hora TIME NOT NULL
 -- OBS: Tenia un error al crear la clave
 ALTER TABLE Profesionales
 ADD CONSTRAINT FK_IDEspecialidad FOREIGN KEY (IDEspecialidad) REFERENCES Especialidades (IDEspecialidad) 
+
+
+
 
 -- INSERTS:
 USE CLINICA_DB
@@ -148,3 +151,5 @@ FROM Personas per INNER JOIN Pacientes on Pacientes.IDPersona = per.ID
 SELECT prof.IDProfesional as 'ID', per.Nombre, per.Apellido, per.DNI, esp.Nombre as 'Especialidad'
 	FROM Personas per INNER JOIN Profesionales prof on prof.IDPersona = per.ID 
 	INNER JOIN Especialidades esp on prof.IDEspecialidad = esp.IDEspecialidad
+
+SELECT IDHorario, FechaInicio as 'Dia', HoraInicio, HoraFin, DiaDeLaSemana, Intervalo FROM Horarios

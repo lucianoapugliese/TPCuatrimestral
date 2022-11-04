@@ -5,12 +5,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <h1>CLINICA "MATA-SANOS"</h1>
-    <h4>(todo esto es preeliminar, probar con Recepcionista)</h4>
+    <h4>(todo esto es preeliminar)</h4>
     <!-- FILTROS -->
     <div class="row">
         <div class="col-3">
             <label class="form-label">Ingrese el tipo de usuario:</label>
             <div class="col">
+                <p>(usar solo Recepcionista)</p>
                 <asp:DropDownList ID="ddlTipoUsario" CssClass="form-control" OnSelectedIndexChanged="ddlTipoUsario_SelectedIndexChanged" runat="server">
                     <asp:ListItem Text="Recepcionista" />
                     <asp:ListItem Text="Profesional" />
