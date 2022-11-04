@@ -10,7 +10,7 @@
             <div class="mb-3">
                 <label for="ddlColores" class="form-label">Tipo</label>
                 <asp:DropDownList ID="ddlTipoFormUsuarios" CssClass="form-select" OnSelectedIndexChanged="ddlTipoFormUsuarios_SelectedIndexChanged" AutoPostBack="true" runat="server">
-                    <asp:ListItem Text="Profecional" />
+                    <asp:ListItem Text="Profesional" />
                     <asp:ListItem Text="Paciente" />
                 </asp:DropDownList>
             </div>
