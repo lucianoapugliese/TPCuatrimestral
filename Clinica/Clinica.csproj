@@ -81,7 +81,7 @@
     <Compile Include="Dominio\Personas\Especialidad.cs" />
     <Compile Include="Dominio\Personas\Paciente.cs" />
     <Compile Include="Dominio\Personas\Persona.cs" />
-    <Compile Include="Dominio\Personas\Profecional.cs" />
+    <Compile Include="Dominio\Personas\Profesional.cs" />
     <Compile Include="Dominio\Turnos\Horario.cs" />
     <Compile Include="Dominio\Turnos\Procedimiento.cs" />
     <Compile Include="Dominio\Turnos\Turno.cs" />
@@ -92,6 +92,7 @@
     <Compile Include="Negocio\NegocioHorarios.cs" />
     <Compile Include="Negocio\NegocioMedicos.cs" />
     <Compile Include="Negocio\NegocioPacientes.cs" />
+    <Compile Include="Negocio\NegocioTurnos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

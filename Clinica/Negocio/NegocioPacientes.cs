@@ -28,12 +28,16 @@ namespace Clinica.Negocio
 
                     if (datos.Lector["Nombre"] != null)
                         paciente.Nombre = datos.Lector["Nombre"].ToString();
+
                     if (datos.Lector["Apellido"] != null)
                         paciente.Apellido = datos.Lector["Nombre"].ToString();
+
                     if (datos.Lector["DNI"] != null)
                         paciente.DNI = Convert.ToInt32(datos.Lector["DNI"]);
+
                     if (datos.Lector["Mail"] != null)
                         paciente.Mail = datos.Lector["Mail"].ToString();
+
                     if (datos.Lector["FechaNacimiento"] != null)
                         paciente.FechaNac = Convert.ToDateTime(datos.Lector["FechaNacimiento"]);
 

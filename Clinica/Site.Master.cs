@@ -11,7 +11,8 @@ namespace Clinica
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["usuario"] != null)
+                lblUsuario.Text = "  "+Session["usuario"].ToString();
         }
     }
 }

@@ -6,40 +6,38 @@
 
     <!-- FILTROS -->
     <h1>Lista de Turnos</h1>
-    <div class="row">
-        <div class="col-3">
-            <label class="form-label">Seleccionar un Dia y un Medico (solo de ejemplo)</label>
+    <div class="container">
+        <div class="row">
             <div class="col">
-                <asp:DropDownList ID="ddlDiaTurnos" CssClass="form-control" OnSelectedIndexChanged="ddlDiaTurnos_SelectedIndexChanged" AutoPostBack="true" runat="server">
-                    <asp:ListItem Text="Lunes" />
-                    <asp:ListItem Text="Martes" />
-                    <asp:ListItem Text="Miercoles" />
-                    <asp:ListItem Text="Jueves" />
-                    <asp:ListItem Text="Viernes" />
-                </asp:DropDownList>
-            </div>
-            <div class="col">
-                <asp:DropDownList ID="ddlEspecialidad" CssClass="form-control" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged" AutoPostBack="true" runat="server">
-                    <asp:ListItem Text="Pediatria" />
-                    <asp:ListItem Text="Dermatologia" />
-                </asp:DropDownList>
-            </div>
-            <div class="col">
-                <asp:DropDownList ID="ddlMedicosTurnos" CssClass="form-control" OnSelectedIndexChanged="ddlMedicosTurnos_SelectedIndexChanged" AutoPostBack="true" runat="server">
-                    <asp:ListItem Text="Medico1" />
-                    <asp:ListItem Text="Medico2" />
-                </asp:DropDownList>
+                <label class="form-label">Seleccionar un Dia y un Medico (solo de ejemplo)</label>
+                <div class="col">
+                    <asp:DropDownList ID="ddlDiaTurnos" CssClass="form-control" OnSelectedIndexChanged="ddlDiaTurnos_SelectedIndexChanged" AutoPostBack="true" runat="server">
+                        <asp:ListItem Text="Lunes" />
+                        <asp:ListItem Text="Martes" />
+                        <asp:ListItem Text="Miercoles" />
+                        <asp:ListItem Text="Jueves" />
+                        <asp:ListItem Text="Viernes" />
+                    </asp:DropDownList>
+                </div>
+                <div class="col">
+                    <asp:DropDownList ID="ddlEspecialidad" CssClass="form-control" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged" AutoPostBack="true" runat="server">
+                        <asp:ListItem Text="Pediatria" />
+                        <asp:ListItem Text="Dermatologia" />
+                    </asp:DropDownList>
+                </div>
+                <div class="col">
+                    <asp:DropDownList ID="ddlMedicosTurnos" CssClass="form-control" OnSelectedIndexChanged="ddlMedicosTurnos_SelectedIndexChanged" AutoPostBack="true" runat="server">
+                        <asp:ListItem Text="Medico1" />
+                        <asp:ListItem Text="Medico2" />
+                    </asp:DropDownList>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-3">
-            <asp:Button Text="Buscar" runat="server" />
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-3">
-            <asp:Label Text="TURNOS DISPONIBLES:" runat="server" />
+
+        <div class="row">
+            <div class="col" style="margin-top:5px">
+                <asp:Button CssClass="btn btn-primary" Text="Buscar" runat="server" />
+            </div>
         </div>
     </div>
 
@@ -58,8 +56,10 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">HORARIO:<%# DataBinder.GetPropertyValue(Container.DataItem, "HoraTurno")%> hs</h5>
-                                    <p class="card-text"><%# (bool)(DataBinder.Eval(Container.DataItem, "Ocupado"))? 
-                                                                 "<span class=\"badge text-bg-success\">Libre</span>\r\n":"<span class=\"badge text-bg-warning\">Ocupado</span>\r\n"%></p>
+                                    <p class="card-text">
+                                        <%# (bool)(DataBinder.Eval(Container.DataItem, "Ocupado"))? 
+                                                                 "<span class=\"badge text-bg-success\">Libre</span>\r\n":"<span class=\"badge text-bg-warning\">Ocupado</span>\r\n"%>
+                                    </p>
                                     <p class="card-text">MEDICO: xxxx </p>
                                     <p class="card-text">Info Paciente: xxxx </p>
                                     <a href="#" class="btn btn-primary">Tomar turno</a>

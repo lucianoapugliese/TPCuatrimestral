@@ -5,12 +5,12 @@ using System.Web;
 
 namespace Clinica.Dominio.Personas
 {
-    public class Profecional : Persona
+    public class Profesional : Persona
     {
         public int IdProfecional { get; set; }
         public Especialidad Especialidad { get; set; }
 
-        public Profecional(int id, 
+        public Profesional(int id, 
             int dni,
             string nombre,
             string apellid,
@@ -27,7 +27,7 @@ namespace Clinica.Dominio.Personas
             Especialidad = especialidad;
         }
 
-        public Profecional()
+        public Profesional()
         {
             Especialidad = new Especialidad();
         }

@@ -12,19 +12,19 @@ namespace Clinica.Negocio
     {
 		//METODOS
 		// LISTAR MEDICOS:
-        public List<Profecional> listarMedicos()
+        public List<Profesional> listarMedicos()
         {
             AccesoDatos datos = new AccesoDatos();
             try
 			{
-				Profecional profecional;
-				List<Profecional> lista = new List<Profecional>();
+				Profesional profecional;
+				List<Profesional> lista = new List<Profesional>();
 				datos.setQuery("SELECT prof.IDProfesional as 'ID', per.Nombre, per.Apellido, per.DNI, esp.Nombre as 'Especialidad' FROM Personas per INNER JOIN Profesionales prof on prof.IDPersona = per.ID INNER JOIN Especialidades esp on prof.IDEspecialidad = esp.IDEspecialidad");
 				datos.ejectuarLectura();
 
 				while( datos.Lector.Read() )
 				{
-					profecional = new Profecional();
+					profecional = new Profesional();
 					profecional.IdProfecional = Convert.ToInt16(datos.Lector["ID"]);
 
                     if (datos.Lector["Nombre"] != DBNull.Value)

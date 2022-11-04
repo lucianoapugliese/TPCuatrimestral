@@ -48,12 +48,8 @@ namespace Clinica.Views
             {
                 if (IsPostBack)
                 {
-                    List<Paciente> listaPacientes = new List<Paciente>(){
-                        new Paciente(3, "Casimiro", "Tuerto", 123456789, "mimail@mail.com", DateTime.Parse("1/1/1900")),
-                        new Paciente(1, "xxxx", "eeeee", 123456789, "mimail@mail.com", DateTime.Parse("1/1/1900")),
-                        new Paciente(2, "kkkk", "rrrrr", 123456789, "mimail@mail.com", DateTime.Parse("1/1/1900"))
-                    };
-                    gvListaPacientes.DataSource = listaPacientes.FindAll(itm => itm.IdPaciente == int.Parse(tbxId.Text));
+                    NegocioPacientes negocio = new NegocioPacientes();
+                    gvListaPacientes.DataSource = negocio.listarPacientes().FindAll(itm => itm.IdPaciente == int.Parse(tbxId.Text));
                     gvListaPacientes.DataBind();
                 }
             }

@@ -6,18 +6,24 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <!-- Filtros -->
-    <div class="row">
-        <div class="col-6">
-            <h1>Lista Pacientes</h1>
-            <h3>(Aca faltan filtros)</h3>
-            <p>....filtros varios....</p>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Lista Pacientes</h1>
+                <h3>(Aca faltan filtros)</h3>
+                <p>....filtros varios....</p>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-6">
-            <p>ej filtro id:</p>
-            <asp:TextBox ID="tbxId" CssClass="form-control" Text="" runat="server" />
-            <asp:Button ID="btnFiltrar" Text="Filtrar" CssClass="btn btn-primary" OnClick="btnFiltrar_Click" runat="server" />
+        <div class="row">
+            <div class="col">
+                <div class="col">
+                    <p>ej filtro id:</p>
+                    <asp:TextBox ID="tbxId" CssClass="form-control" Text="" runat="server" />
+                </div>
+                <div class="col" style="margin-top:5px">
+                    <asp:Button ID="btnFiltrar" Text="Filtrar" CssClass="btn btn-primary" OnClick="btnFiltrar_Click" runat="server" />
+                </div>
+            </div>
         </div>
     </div>
 
@@ -41,7 +47,5 @@
             </Columns>
         </asp:GridView>
     </div>
-
-    <!-- new Paciente(0, "Casimiro", "Tuerto", 123456789, "mimail@mail.com", DateTime.Parse("1/1/1900")) -->
 
 </asp:Content>

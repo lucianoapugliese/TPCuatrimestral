@@ -14,8 +14,9 @@ namespace Clinica.Negocio
          */
 
         public List<Horario> listaHorarios;
-       
-
+        
+        //METODOS:
+        //Listar Horarios Libres:
         public List<Horario> HorariosLibres()
         {
             //Suponemos que traemos la lista de dias libres??

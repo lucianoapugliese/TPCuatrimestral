@@ -34,6 +34,7 @@ namespace Clinica.Views
         {
             if(tbxContraseña.Text != "")
             {
+                Session.Add("usuario", tbxUsuario.Text);
                 lblNombreUsuario.Text = tbxUsuario.Text;
                 Seleccion = ddlTipoUsario.SelectedValue;
             }

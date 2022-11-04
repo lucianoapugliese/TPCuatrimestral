@@ -18,7 +18,7 @@ namespace Clinica.Views
                 if(!IsPostBack)
                 {
                     NegocioMedicos negocioMedicos = new NegocioMedicos();
-                    List<Profecional> ls = negocioMedicos.listarMedicos();
+                    List<Profesional> ls = negocioMedicos.listarMedicos();
                     gvEjemplo1.DataSource = ls;
                     gvEjemplo1.DataBind();
                 }
