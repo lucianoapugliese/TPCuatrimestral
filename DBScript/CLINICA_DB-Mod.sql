@@ -136,6 +136,7 @@ INSERT INTO Horarios VALUES (GETDATE(), GETDATE(), '11:30', '12:00', 2, 4)
 INSERT INTO Horarios VALUES (GETDATE(), GETDATE(), '12:30', '13:00', 3, 5)
 INSERT INTO Horarios VALUES (GETDATE(), GETDATE(), '13:30', '14:00', 3, 6)
 
+
 -- SELECTS:
 SELECT ID, Personas.Nombre, Personas.Apellido FROM Personas INNER JOIN Pacientes on Pacientes.IDPaciente = Personas.ID WHERE IDPersona = ID
 SELECT * FROM Personas 
