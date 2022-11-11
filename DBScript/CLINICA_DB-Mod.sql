@@ -106,7 +106,7 @@ INSERT INTO Pacientes VALUES (3)
 INSERT INTO Pacientes VALUES (4)
 INSERT INTO Pacientes VALUES (5)
 INSERT INTO Pacientes VALUES (6)
---Profecionales
+--Profesionales
 INSERT INTO Personas VALUES ('Mariana','Lopez','12345673','elmail@mail.com','02/07/2010')
 INSERT INTO Personas VALUES ('Facundo','Amarilla','12345672','elmail@mail.com','01/07/2010')
 INSERT INTO Personas VALUES ('Luciano','Apugliese','12345671','elmail@mail.com','30/09/2009')
