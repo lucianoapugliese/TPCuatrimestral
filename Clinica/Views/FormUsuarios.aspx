@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormUsuarios.aspx.cs" Inherits="Clinica.Views.FormUsuarios" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2>Ingreso de Nuevo Usuario</h2>
@@ -10,7 +11,7 @@
             <div class="mb-3">
                 <label for="ddlColores" class="form-label">Tipo</label>
                 <asp:DropDownList ID="ddlTipoFormUsuarios" CssClass="form-select" OnSelectedIndexChanged="ddlTipoFormUsuarios_SelectedIndexChanged" AutoPostBack="true" runat="server">
-                    <asp:ListItem Text="Profecional" />
+                    <asp:ListItem Text="Profesional" />
                     <asp:ListItem Text="Paciente" />
                 </asp:DropDownList>
             </div>

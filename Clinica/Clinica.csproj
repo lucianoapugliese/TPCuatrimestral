@@ -71,6 +71,7 @@
     <Content Include="Views\Default.aspx" />
     <Content Include="Views\Error.aspx" />
     <Content Include="Views\FormUsuarios.aspx" />
+    <Content Include="Views\Home.aspx" />
     <Content Include="Views\ListaMedicos.aspx" />
     <Content Include="Views\ListaPacientes.aspx" />
     <Content Include="Views\ListaTurnos.aspx" />
@@ -85,6 +86,7 @@
     <Compile Include="Dominio\Turnos\Horario.cs" />
     <Compile Include="Dominio\Turnos\Procedimiento.cs" />
     <Compile Include="Dominio\Turnos\Turno.cs" />
+    <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Negocio\AccesoDatos.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -121,6 +123,13 @@
     </Compile>
     <Compile Include="Views\FormUsuarios.aspx.designer.cs">
       <DependentUpon>FormUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ListaMedicos.aspx.cs">
       <DependentUpon>ListaMedicos.aspx</DependentUpon>

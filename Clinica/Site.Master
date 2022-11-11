@@ -30,7 +30,7 @@
                 </div>
             </div>
 
-            <div class="card" style="width: 18rem; margin-right:4px">
+            <div class="card" style="width: 18rem; margin-right: 4px">
                 <div class="card-header">
                     Usuario
                 </div>
@@ -39,16 +39,18 @@
                 </ul>
             </div>
         </nav>
+        <!-- Fin NAV -->
 
         <!-- Contenido -->
         <div class="container-fluid text-center">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-    </form>
 
+        <!-- Footer -->
+        <footer class="navbar">
+        </footer>
+    </form>
     <!-- fin -->
-    <footer class="navbar">
-    </footer>
 </body>
 </html>
