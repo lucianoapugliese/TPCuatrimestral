@@ -87,16 +87,31 @@ namespace Clinica.Dominio
             }
         }
         //Ejecutar Query
-        public int ejecutarQuery(string query)
+        public int ejecutarQuery()
         {
             try
             {
                 _command.Connection = _conn;
+                _conn.Open();
                 return _command.ExecuteNonQuery();
             }
             catch (SqlException ex)
             {
                 throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        //Ejecutar QueryScalar
+        public int ejecutarScalar()
+        {
+            try
+            {
+                _command.Connection = _conn;
+                _conn.Open();
+                return (int)_command.ExecuteScalar();
             }
             catch (Exception ex)
             {

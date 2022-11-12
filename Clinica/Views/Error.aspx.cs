@@ -19,8 +19,8 @@ namespace Clinica.Views
             }
 			catch
 			{
-                tbxError.Text = "Error desconocido";
-                msg = "No hay descripcion disponible";
+                tbxError.Text = "Error No contemplado";
+                msg = Session["error"] != null ? Session["error"].ToString() : "Error desconocido";
 			}
         }
     }

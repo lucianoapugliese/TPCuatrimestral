@@ -12,5 +12,6 @@ namespace Clinica.Dominio.Personas
         public int DNI { get; set; }
         public string Mail { get; set; }
         public DateTime FechaNac { get; set; }
+        public int Nivel { get; set; }
     }
 }

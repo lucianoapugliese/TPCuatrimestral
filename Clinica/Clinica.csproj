@@ -91,6 +91,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Negocio\ControlUsuarios.cs" />
+    <Compile Include="Negocio\NegocioAdministrador.cs" />
     <Compile Include="Negocio\NegocioHorarios.cs" />
     <Compile Include="Negocio\NegocioMedicos.cs" />
     <Compile Include="Negocio\NegocioPacientes.cs" />

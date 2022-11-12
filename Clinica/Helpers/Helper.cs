@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Clinica.Dominio.Personas;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,7 +26,17 @@ namespace Clinica.Helpers
             {
                 return true;
             }
+        }
 
+        public static int TypeUser(Page page)
+        {
+            // 1 si es recepcionista, 2 si es medico, 0 si es admin, x si no esta logeado (temporal, ver)
+            if (page.Session["usuario"] != null)
+            {
+                int tipo = Convert.ToInt32( ((Admin)page.Session["usurio"]).Nivel );
+                return tipo;
+            }
+            return -1;
         }
     }
 }

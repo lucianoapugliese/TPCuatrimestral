@@ -1,4 +1,5 @@
 ﻿using Clinica.Dominio.Personas;
+using Clinica.Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +15,18 @@ namespace Clinica.Views
         public string Seleccion { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
+            if (!IsPostBack)
             {
                 Seleccion = "";
-            }
-            catch (Exception ex)
-            {
-                Session.Add("error", ex);
-                Response.Redirect("Error.aspx", false);  
+                try
+                {
+                    // nada todavia
+                }
+                catch (Exception ex)
+                {
+                    Session.Add("error", ex);
+                    Response.Redirect("Error.aspx", false);
+                }
             }
         }
 
@@ -32,11 +37,14 @@ namespace Clinica.Views
 
         protected void btnIngreso_Click(object sender, EventArgs e)
         {
-            if(tbxContraseña.Text != "")
+            ControlUsuarios control = new ControlUsuarios();
+            if(control.UserLogin(tbxUsuario.Text, tbxContraseña.Text, this))
             {
-                Session.Add("usuario", tbxUsuario.Text);
-                lblNombreUsuario.Text = tbxUsuario.Text;
-                Seleccion = ddlTipoUsario.SelectedValue;
+                if (Session["usuario"] != null)
+                {
+                    lblNombreUsuario.Text = tbxUsuario.Text;
+                    Seleccion = ddlTipoUsario.SelectedValue;
+                }
             }
         }
     }
