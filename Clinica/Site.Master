@@ -3,12 +3,24 @@
 <!DOCTYPE html>
 <html>
 <head runat="server">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap" rel="stylesheet"> 
     <title></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" rel="" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
+<style>
+    #login{
+        background-color: #c2c7c742;
+        border-radius: 0 0 2rem 2rem;
+    }
+    body{
+        font-family:Crimson text;
+    }
+</style>
 <body>
     <!-- inicio -->
     <form id="form1" runat="server">
