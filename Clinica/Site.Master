@@ -50,7 +50,7 @@
                     Nivel:
                     <asp:Label ID="lblNivelUsuario" Text="" runat="server" />
                 </div>
-                <asp:Button Text="Cerrar Sesion" runat="server" />
+                <asp:Button Text="Cerrar Sesion" ID="btnCerrarSesionMaster" OnClick="btnCerrarSesionMaster_Click" runat="server" />
             </div>
         </nav>
         <!-- Fin NAV -->

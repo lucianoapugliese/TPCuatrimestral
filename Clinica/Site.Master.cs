@@ -27,5 +27,14 @@ namespace Clinica
                 lblNivelUsuario.Text = Helper.TypeUser(Page).ToString();
             }
         }
+
+        protected void btnCerrarSesionMaster_Click(object sender, EventArgs e)
+        {
+            if (Helper.IsUserLogin(Page))
+            {
+                Session.Remove("usuario");
+                Response.Redirect("Default.aspx", false);
+            }
+        }
     }
 }
