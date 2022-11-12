@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace Clinica.Dominio
 {
@@ -15,8 +16,9 @@ namespace Clinica.Dominio
         public SqlDataReader Lector { get { return _reader; } }
 
         //Constructor:
-        public AccesoDatos (string cadenaConexion = "server=.; database = CLINICA_DB; integrated security = true")
+        public AccesoDatos ()
         {
+            string cadenaConexion = ConfigurationManager.ConnectionStrings["ConnStr1"].ToString();
             try
             {
                 _conn = new SqlConnection (cadenaConexion);

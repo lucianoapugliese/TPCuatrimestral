@@ -37,14 +37,22 @@ namespace Clinica.Views
 
         protected void btnIngreso_Click(object sender, EventArgs e)
         {
-            ControlUsuarios control = new ControlUsuarios();
-            if(control.UserLogin(tbxUsuario.Text, tbxContraseña.Text, this))
+            try
             {
-                if (Session["usuario"] != null)
+                ControlUsuarios control = new ControlUsuarios();
+                if (control.UserLogin(tbxUsuario.Text, tbxContraseña.Text, this))
                 {
-                    lblNombreUsuario.Text = tbxUsuario.Text;
-                    Seleccion = ddlTipoUsario.SelectedValue;
+                    if (Session["usuario"] != null)
+                    {
+                        lblNombreUsuario.Text = tbxUsuario.Text; //es DNI no nombre
+                        Seleccion = ddlTipoUsario.SelectedValue;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                Response.Redirect("Error.aspx", false);
             }
         }
     }

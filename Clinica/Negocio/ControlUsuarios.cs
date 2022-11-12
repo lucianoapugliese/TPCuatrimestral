@@ -37,6 +37,7 @@ namespace Clinica.Negocio
                     user.FechaNac = Convert.ToDateTime(_datos.Lector["FechaNacimiento"]);
                     user.Nivel = Convert.ToInt32(_datos.Lector["Nivel"]);
                     page.Session.Add("usuario", user);
+                    page.Session.Add("nombreUsuario", _datos.Lector["Nombre"].ToString());
                     return true;
                 }
                 else

@@ -48,7 +48,7 @@ namespace Clinica.Negocio
                     if (datos.Lector["Intervalo"] != null)
                         horario.Intervalo = Convert.ToInt16(datos.Lector["Intervalo"]);
 
-                    //Aca se contrastaria si el hs esta ocupado o no
+                    //Aca se contrasta si el hs esta ocupado o no ??
                     horario.Ocupado = false;
 
                     listaHorarios.Add(horario);
