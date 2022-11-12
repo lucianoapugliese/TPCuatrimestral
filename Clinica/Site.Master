@@ -45,11 +45,12 @@
 
             <div class="card" style="width: 18rem; margin-right: 4px">
                 <div class="card-header">
-                    Usuario
-                </div>
-                <ul class="list-group list-group-flush">
+                    Usuario: 
                     <asp:Label ID="lblUsuario" Text="" runat="server" />
-                </ul>
+                    Nivel:
+                    <asp:Label ID="lblNivelUsuario" Text="" runat="server" />
+                </div>
+                <asp:Button Text="Cerrar Sesion" runat="server" />
             </div>
         </nav>
         <!-- Fin NAV -->

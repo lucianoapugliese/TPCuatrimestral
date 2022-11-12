@@ -1,4 +1,5 @@
 ﻿using Clinica.Dominio.Personas;
+using Clinica.Helpers;
 using Clinica.Negocio;
 using System;
 using System.Collections.Generic;
@@ -13,14 +14,20 @@ namespace Clinica.Views
     public partial class Default : System.Web.UI.Page
     {
         public string Seleccion { get; set; }
+        public bool Logeado { get; set; }
+        
+        //LOAD
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                Seleccion = "";
                 try
                 {
-                    // nada todavia
+                    if(Helper.IsUserLogin(this))
+                    {
+                        Logeado = true;
+                        lblNombreUsuario.Text = Session["nombreUsuario"].ToString();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -30,11 +37,8 @@ namespace Clinica.Views
             }
         }
 
-        protected void ddlTipoUsario_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //ver si es necesario el metodo
-        }
-
+        //METODOS
+        //Boton Ingresar:
         protected void btnIngreso_Click(object sender, EventArgs e)
         {
             try
@@ -44,9 +48,13 @@ namespace Clinica.Views
                 {
                     if (Session["usuario"] != null)
                     {
-                        lblNombreUsuario.Text = tbxUsuario.Text; //es DNI no nombre
-                        Seleccion = ddlTipoUsario.SelectedValue;
+                        lblNombreUsuario.Text = Session["nombreUsuario"].ToString(); //es DNI no nombre
+                        Response.Redirect("Default.aspx", false);
                     }
+                }
+                else
+                {
+                    lblNoLog.Text = "Usuario no Registrado";
                 }
             }
             catch (Exception ex)

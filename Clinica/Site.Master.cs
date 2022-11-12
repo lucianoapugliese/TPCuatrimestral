@@ -22,7 +22,10 @@ namespace Clinica
             //}
             
             if (Session["usuario"] != null)
-                lblUsuario.Text = "  "+Session["nombreUsuario"].ToString();
+            {
+                lblUsuario.Text = "  " + Session["nombreUsuario"].ToString();
+                lblNivelUsuario.Text = Helper.TypeUser(Page).ToString();
+            }
         }
     }
 }
