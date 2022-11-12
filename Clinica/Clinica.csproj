@@ -67,6 +67,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="fonts\image-missing.png" />
     <Content Include="Global.asax" />
     <Content Include="Views\Default.aspx" />
     <Content Include="Views\Error.aspx" />
@@ -75,6 +76,7 @@
     <Content Include="Views\ListaMedicos.aspx" />
     <Content Include="Views\ListaPacientes.aspx" />
     <Content Include="Views\ListaTurnos.aspx" />
+    <Content Include="Views\LoginRegistro.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +156,13 @@
     <Compile Include="Views\ListaTurnos.aspx.designer.cs">
       <DependentUpon>ListaTurnos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\LoginRegistro.aspx.cs">
+      <DependentUpon>LoginRegistro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\LoginRegistro.aspx.designer.cs">
+      <DependentUpon>LoginRegistro.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Site.Master" />
@@ -167,7 +176,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="fonts\" />
     <Folder Include="script\" />
   </ItemGroup>
   <PropertyGroup>

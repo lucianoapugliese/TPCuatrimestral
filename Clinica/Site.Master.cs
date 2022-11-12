@@ -15,12 +15,12 @@ namespace Clinica
         protected void Page_Load(object sender, EventArgs e)
         {
             //Verificamos en que pagina estamos y el nivel de usuario (solo con Default xahora y comentado)
-            //if(Page is Default)
-            //{
-            //    if (!Helper.IsUserLogin(Page, "Usuario no Logeado"))
-            //        Response.Redirect("Error.aspx");
-            //}
-            
+            if (!(Page is Default))
+            {
+                if (!Helper.IsUserLogin(Page, "Usuario no Logeado"))
+                    Response.Redirect("Error.aspx");
+            }
+
             if (Session["usuario"] != null)
             {
                 lblUsuario.Text = "  " + Session["nombreUsuario"].ToString();

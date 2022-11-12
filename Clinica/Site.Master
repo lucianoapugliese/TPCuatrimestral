@@ -62,7 +62,8 @@
         </div>
 
         <!-- Footer -->
-        <footer class="navbar">
+        <footer>
+            <hr>
         </footer>
     </form>
     <!-- fin -->

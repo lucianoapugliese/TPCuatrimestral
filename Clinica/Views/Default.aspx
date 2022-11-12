@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Clinica.Views.Default" %>
+﻿<%@ Page Title="Clinica" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Clinica.Views.Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -8,7 +8,6 @@
     <div class="container p-4" id="login">
         <h1>CLINICA "MATA-SANOS"</h1>
 
-        
         <!-- INPUTS -->
         <%if (!Logeado)
             {%>
@@ -53,6 +52,7 @@
                     <a href="ListaTurnos.aspx" class="btn btn-primary">Ir a Lista Turnos</a>
                     <a href="ListaPacientes.aspx" class="btn btn-primary">Ir a Lista Pacientes</a>
                     <a href="ListaMedicos.aspx" class="btn btn-primary">Ir a Lista Medicos</a>
+                    <a href="LoginRegistro.aspx" class="btn btn-primary">Ir a Agregar Nuevo Usuario</a>
                 <%}%>
             </div>
         </div>

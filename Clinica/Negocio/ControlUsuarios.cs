@@ -1,5 +1,6 @@
 ﻿using Clinica.Dominio;
 using Clinica.Dominio.Personas;
+using Clinica.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,5 +52,33 @@ namespace Clinica.Negocio
             }
         }
 
+        // Tipos de Registros
+        public List<string> TypeUserListItem(int tipo)
+        {
+            // 1 si es recepcionista, 2 si es medico, 0 si es admin, x si no esta logeado (temporal, ver)
+            List<string> list = new List<string>();
+            //Admin
+            try
+            {
+                switch (tipo)
+                {
+                    case 0:
+                        list.Add("Admin");
+                        list.Add("Medico");
+                        list.Add("Empleado");
+                        list.Add("Paciente");
+                        break;
+                    case 1:
+                        list.Add("Paciente");
+                        list.Add("Medico");
+                        break;
+                }
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
