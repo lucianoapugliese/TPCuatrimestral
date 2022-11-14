@@ -69,6 +69,15 @@ namespace Clinica.Views
         protected global::System.Web.UI.WebControls.TextBox txtDNI;
 
         /// <summary>
+        /// txtFecha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFecha;
+
+        /// <summary>
         /// txtMail control.
         /// </summary>
         /// <remarks>
@@ -78,13 +87,13 @@ namespace Clinica.Views
         protected global::System.Web.UI.WebControls.TextBox txtMail;
 
         /// <summary>
-        /// txtContraseña control.
+        /// txtPass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtContraseña;
+        protected global::System.Web.UI.WebControls.TextBox txtPass;
 
         /// <summary>
         /// txaDescripcion control.

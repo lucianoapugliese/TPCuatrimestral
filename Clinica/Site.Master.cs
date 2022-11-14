@@ -15,7 +15,7 @@ namespace Clinica
         protected void Page_Load(object sender, EventArgs e)
         {
             //Verificamos en que pagina estamos y el nivel de usuario (solo con Default xahora y comentado)
-            if (!(Page is Default))
+            if (!(Page is Default || Page is LoginRegistro))
             {
                 if (!Helper.IsUserLogin(Page, "Usuario no Logeado"))
                     Response.Redirect("Error.aspx");

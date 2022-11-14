@@ -2,6 +2,7 @@
 using Clinica.Dominio.Personas;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -36,6 +37,55 @@ namespace Clinica.Negocio
                     lista.Add(_user);
                 }
                 return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _datos.cerrarConexion();
+            }
+        }
+        // Agregar Registro
+        public int AgregarRegistro(Admin newUser, string pass)
+        {
+            _datos = new AccesoDatos();
+            try
+            {
+                _datos.setQuery("INSERT INTO Personas OUTPUT INSERTED.ID VALUES (@Nombre, @Apellido, @DNI, @Mail, @FechaNacimiento, @Nivel, @Pass)");
+                _datos.setParametro("@Nombre", newUser.Nombre);
+                _datos.setParametro("@Apellido", newUser.Apellido);
+                _datos.setParametro("@DNI", newUser.DNI);
+                _datos.setParametro("@Mail", newUser.Mail);
+                _datos.setParametro("@FechaNacimiento", newUser.FechaNac);
+                _datos.setParametro("@Nivel", newUser.Nivel);
+                _datos.setParametro("@Pass", pass);
+                return _datos.ejecutarScalar();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _datos.cerrarConexion();
+            }
+        }
+
+        //Agregar a tabla Admins
+        public int agregarTablaAdmins(int id)
+        {
+            _datos = new AccesoDatos();
+            try
+            {
+                _datos.setQuery("INSERT INTO Administradores VALUES (@Id)");
+                _datos.setParametro("@Id", id);
+                return _datos.ejecutarQuery();
             }
             catch (Exception ex)
             {

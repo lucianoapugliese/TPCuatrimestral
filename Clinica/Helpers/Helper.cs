@@ -10,6 +10,13 @@ namespace Clinica.Helpers
     public static class Helper
     {
         // Cartel de Error dinamico:
+        public enum Type
+        {
+            ADMIN,
+            EMPLEADO,
+            MEDICO,
+            PACIENTE = -1
+        }
         public static void Mensaje(Page page, string mensaje)
         {
             if (!string.IsNullOrWhiteSpace(mensaje))
@@ -39,7 +46,7 @@ namespace Clinica.Helpers
         // Tipo de usuario por pagina
         public static int TypeUser(Page page)
         {
-            // 1 si es recepcionista, 2 si es medico, 0 si es admin, x si no esta logeado (temporal, ver)
+            // 1 si es empleado, 2 si es medico, 0 si es admin, x si no esta logeado (temporal, ver)
             if (page.Session["usuario"] != null)
             {
                 int tipo = Convert.ToInt32( ((Profesional)page.Session["usuario"]).Nivel );

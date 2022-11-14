@@ -15,11 +15,16 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Nivel</label>
-                <asp:DropDownList ID="ddlNivel" CssClass="form-select" runat="server"></asp:DropDownList>
+                <asp:DropDownList ID="ddlNivel" CssClass="form-select" OnTextChanged="ddlNivel_TextChanged" AutoPostBack="true" runat="server">
+                    <asp:ListItem Value="-1" Text="Paciente" />
+                    <asp:ListItem Value="2" Text="Medico" />
+                    <asp:ListItem Value="1" Text="Empleado" />
+                    <asp:ListItem Value="0" Text="Administrador" />
+                </asp:DropDownList>
             </div>
             <div class="mb-3">
                 <label class="form-label">Especialidad</label>
-                <asp:DropDownList ID="ddlEspecialidad" CssClass="form-select" runat="server"></asp:DropDownList>
+                <asp:DropDownList ID="ddlEspecialidad" Enabled="false" CssClass="form-select"  runat="server"></asp:DropDownList>
             </div>
             <div class="mb-3">
                 <label class="form-label">Nombre</label>
@@ -33,6 +38,10 @@
                 <label class="form-label">DNI</label>
                 <asp:TextBox Text="" ID="txtDNI" CssClass="form-control" runat="server" />
             </div>
+            <div class="mb-3">
+                <label class="form-label">Fecha Nacimiento</label>
+                <asp:TextBox Text="" ID="txtFecha" CssClass="form-control" runat="server" />
+            </div>
         </div>
         <!-- Imputs: Mail, Constraseña, Descripcion e Imagen -->
         <div class="col-6">
@@ -42,7 +51,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Contraseña</label>
-                <asp:TextBox ID="txtContraseña" CssClass="form-control" runat="server" />
+                <asp:TextBox ID="txtPass" CssClass="form-control" runat="server" />
             </div>
             <div class="mb-3">
                 <label class="form-label">Descripcion Medica</label>
@@ -70,7 +79,7 @@
                 <asp:UpdatePanel runat="server">
                     <ContentTemplate>
                         <div>
-                            <asp:Button ID="btnAgregar" Text="Agregar" CssClass="btn btn-primary"  runat="server" />
+                            <asp:Button ID="btnAgregar" Text="Agregar" CssClass="btn btn-primary" OnClick="btnAgregar_Click" runat="server" />
                             <asp:Button ID="btnEliminar" Text="Eliminar" CssClass="btn btn-danger"  runat="server" />
                             <asp:Button ID="btnEliminarLogica" Text="Dar de Baja" CssClass="btn btn-warning"  runat="server" />
                             <asp:Button ID="btnAltaLogica" Text="Dar de Alta" CssClass="btn btn-warning"  runat="server" />

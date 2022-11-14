@@ -38,7 +38,12 @@
                         <a class="nav-link" href="ListaTurnos.aspx">Turnos</a>
                         <a class="nav-link" href="ListaMedicos.aspx">Medicos</a>
                         <a class="nav-link" href="ListaPacientes.aspx">Pacientes</a>
-                        <a class="nav-link" href="FormUsuarios.aspx">Nuevo Usuario</a>
+                        <%if(Clinica.Helpers.Helper.TypeUser(Page) == 1) {%> 
+                            <a class="nav-link" href="FormUsuarios.aspx">Nuevo Paciente</a>
+                        <%}%> 
+                        <%if(Clinica.Helpers.Helper.TypeUser(Page) == 2 || Clinica.Helpers.Helper.TypeUser(Page) == 1 ) {%> 
+                            <a class="nav-link" href="FormUsuarios.aspx?v=1">Nuevo Medico</a>
+                        <%}%> 
                     </div>
                 </div>
             </div>

@@ -95,6 +95,7 @@
     </Compile>
     <Compile Include="Negocio\ControlUsuarios.cs" />
     <Compile Include="Negocio\NegocioAdministrador.cs" />
+    <Compile Include="Negocio\NegocioEspecialidad.cs" />
     <Compile Include="Negocio\NegocioHorarios.cs" />
     <Compile Include="Negocio\NegocioMedicos.cs" />
     <Compile Include="Negocio\NegocioPacientes.cs" />

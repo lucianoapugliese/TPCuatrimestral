@@ -113,7 +113,8 @@ namespace Clinica.Dominio
             {
                 _command.Connection = _conn;
                 _conn.Open();
-                return (int)_command.ExecuteScalar();
+                int n = Convert.ToInt32(_command.ExecuteScalar());
+                return n;
             }
             catch (Exception ex)
             {

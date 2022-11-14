@@ -1,57 +1,55 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormUsuarios.aspx.cs" Inherits="Clinica.Views.FormUsuarios" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2>Ingreso de Nuevo Usuario</h2>
     <!-- Formulario -->
-    <div class="row">
+    <div class="row d-flex justify-content-center mb-5">
         <div class="col-6">
             <div class="mb-3">
-                <label for="ddlColores" class="form-label">Tipo</label>
-                <asp:DropDownList ID="ddlTipoFormUsuarios" CssClass="form-select" OnSelectedIndexChanged="ddlTipoFormUsuarios_SelectedIndexChanged" AutoPostBack="true" runat="server">
-                    <asp:ListItem Text="Profesional" />
-                    <asp:ListItem Text="Paciente" />
-                </asp:DropDownList>
+                <label for="ddlTipo" class="form-label">Tipo</label>
+                <%if (Request.QueryString["v"] != null){%>
+                    <asp:DropDownList ID="ddlEspecialidad" CssClass="form-select" AutoPostBack="true" runat="server"></asp:DropDownList>
+                <%}%>
             </div>
-
-            <%if (Seleccion == "Paciente"){%>
             <div>
                 <div class="mb-3">
                     <label class="form-label">Nombre</label>
-                    <asp:TextBox CssClass="form-control" ReadOnly="false" placeholder="pepito" runat="server" />
+                    <asp:TextBox ID="txtNombre" CssClass="form-control" ReadOnly="false" placeholder="pepito" runat="server" />
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Apellido</label>
-                    <asp:TextBox CssClass="form-control" placeholder="navajas" runat="server" />
+                    <asp:TextBox ID="txtApellido" CssClass="form-control" placeholder="navajas" runat="server" />
                 </div>
                 <div class="mb-3">
                     <label class="form-label">DNI</label>
-                    <asp:TextBox CssClass="form-control" runat="server" />
+                    <asp:TextBox ID="txtDNI" CssClass="form-control" runat="server" />
                 </div>
                 <div class="mb-3">
-                    <label for="tbxFecha" class="form-label">Fecha Nacimiento</label>
-                    <asp:TextBox TextMode="Date" CssClass="form-control" runat="server" />
+                    <label for="txtMail" class="form-label">Mail</label>
+                    <asp:TextBox ID="txtMail" CssClass="form-control" placeholder="ejemplo@mail.com" runat="server" />
                 </div>
                 <div class="mb-3">
-                    <label for="tbxFecha" class="form-label">Mail</label>
-                    <asp:TextBox CssClass="form-control" placeholder="ejemplo@mail.com" runat="server" />
+                    <label for="txtFecha" class="form-label">Fecha Nacimiento</label>
+                    <asp:TextBox ID="txtFecha" TextMode="Date" CssClass="form-control" runat="server" />
                 </div>
-                <div class="mb-3">
-                    <label class="form-check-label">Algo ??</label>
-                    <asp:CheckBox runat="server" />
-                </div>
+                <%if (Request.QueryString["v"] != null){%>
+                    <div class="mb-3">
+                        <label class="form-label">Nueva Contraseña</label>
+                        <asp:TextBox ID="txtPass" CssClass="form-control" runat="server" ></asp:TextBox>
+                    </div>
+                <%}%>
                 <div class="m-3">
-                    <asp:Button Text="Aceptar" ID="btnAceptar" CssClass="btn btn-primary" runat="server" />
-                    <a href="Default.aspx">Volver</a>
+                    <asp:Button Text="Agregar" ID="btnAceptar" CssClass="btn btn-primary" OnClick="btnAceptar_Click" runat="server" />
+                    <asp:Button Text="Modificar" ID="btnBuscar" CssClass="btn btn-primary" OnClick="btnBuscar_Click" runat="server" />
+                    <asp:Button Text="Dar de Baja" ID="btnModificar" CssClass="btn btn-primary" OnClick="btnModificar_Click" runat="server" />
+                </div>
+                <div>
+                     <a href="Default.aspx">Volver</a>
                 </div>
                 <asp:Label Text="" ID="lblAdvertencia" runat="server" />
             </div>
-            <%}
-              else {%> 
-            <h3>Nada todavia XD</h3>
-            <%}%>
         </div>
     </div>
 </asp:Content>
