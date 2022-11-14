@@ -30,25 +30,43 @@ namespace Clinica.Negocio
         {
             try
             {
-                Profesional user;
+                Profesional profesional = null;
+                Admin administrador = null;
                 _datos = new AccesoDatos();
-                _datos.setSP("SP_ExisteUsuario");
+                _datos.setSP("SP_ExisteUsuarioGeneral"); // <-- cambio 
                 _datos.setParametro("@DNI", dni);
                 _datos.setParametro("@pass", pass);
                 _datos.ejectuarLectura();
                 if (_datos.Lector.Read())
                 {
-                    //Cargamos el usuario si es que existe
-                    user = new Profesional();
-                    user.IdProfecional = Convert.ToInt32(_datos.Lector["IDadmin"]);
-                    user.Nombre = _datos.Lector["Nombre"].ToString();
-                    user.Apellido = _datos.Lector["Apellido"].ToString();
-                    user.DNI = Convert.ToInt32(_datos.Lector["DNI"]);
-                    user.Mail = _datos.Lector["Mail"].ToString();
-                    user.FechaNac = Convert.ToDateTime(_datos.Lector["FechaNacimiento"]);
-                    user.Nivel = Convert.ToInt32(_datos.Lector["Nivel"]);
+                    int level = Convert.ToInt32(_datos.Lector["Nivel"]);
+                    if (level == 0 || level == 1)
+                    {
+                        administrador = new Admin();
+                        administrador.IdAdmin = Convert.ToInt32(_datos.Lector["ID"]);
+                        administrador.Nombre = _datos.Lector["Nombre"].ToString();
+                        administrador.Apellido = _datos.Lector["Apellido"].ToString();
+                        administrador.DNI = Convert.ToInt32(_datos.Lector["DNI"]);
+                        administrador.Mail = _datos.Lector["Mail"].ToString();
+                        administrador.FechaNac = Convert.ToDateTime(_datos.Lector["FechaNacimiento"]);
+                        administrador.Nivel = level;
+                    }
+                    else
+                    {
+                        profesional = new Profesional();
+                        profesional.IdProfecional = Convert.ToInt32(_datos.Lector["ID"]);
+                        profesional.Nombre = _datos.Lector["Nombre"].ToString();
+                        profesional.Apellido = _datos.Lector["Apellido"].ToString();
+                        profesional.DNI = Convert.ToInt32(_datos.Lector["DNI"]);
+                        profesional.Mail = _datos.Lector["Mail"].ToString();
+                        profesional.FechaNac = Convert.ToDateTime(_datos.Lector["FechaNacimiento"]);
+                        profesional.Nivel = level;
+                    }
                     //Creamos en session ese user
-                    page.Session.Add("usuario", user);
+                    if(administrador != null)
+                        page.Session.Add("usuario", administrador);
+                    if(profesional != null)
+                        page.Session.Add("usuario", profesional);
                     page.Session.Add("nombreUsuario", _datos.Lector["Nombre"].ToString());
                     return true;
                 }

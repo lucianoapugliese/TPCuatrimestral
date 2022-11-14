@@ -10,16 +10,18 @@ namespace Clinica.Views
     public partial class Error : System.Web.UI.Page
     {
         public string msg { get; set; }
+        public string msg2 { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
 			try
             {
-                tbxError.Text = ((Exception)Session["error"]).Source;
+                lblError.Text = ((Exception)Session["error"]).Source;
                 msg = ((Exception)Session["error"]).Message;
+                msg2 = ((Exception)Session["error"]).StackTrace;
             }
 			catch
 			{
-                tbxError.Text = "Error No contemplado";
+                lblError.Text = "Error No contemplado";
                 msg = Session["error"] != null ? Session["error"].ToString() : "Error desconocido";
 			}
         }

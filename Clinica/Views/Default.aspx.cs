@@ -44,6 +44,7 @@ namespace Clinica.Views
             try
             {
                 ControlUsuarios control = new ControlUsuarios();
+                // Autenticar imputs <-- 
                 if (control.UserLogin(tbxUsuario.Text, tbxContraseña.Text, this))
                 {
                     if (Session["usuario"] != null)

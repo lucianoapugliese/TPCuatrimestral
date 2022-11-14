@@ -21,7 +21,7 @@ namespace Clinica
                 if (!(Page is Default || Page is LoginRegistro))
                 {
                     if (!Helper.IsUserLogin(Page, "Usuario no Logeado"))
-                        Response.Redirect("Error.aspx");
+                        Response.Redirect("Error.aspx", false);
                 }
 
                 if (Session["usuario"] != null)

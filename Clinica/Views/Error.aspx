@@ -10,8 +10,9 @@
     <form id="form1" runat="server">
         <div>
             <h1>Error Inesperado</h1>
-            <asp:TextBox ID="tbxError" Text="" runat="server"></asp:TextBox>
+            <asp:Label ID="lblError" Text="" runat="server"></asp:Label>
             <p><%: msg %></p>
+            <p><%: msg2 %></p>
         </div>
     </form>
 </body>

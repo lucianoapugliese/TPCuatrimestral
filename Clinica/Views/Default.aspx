@@ -41,20 +41,28 @@
                 <asp:Label ID="lblNombreUsuario" Text="" runat="server" />
             </h4>
             <div class="col">
-                <%if (Clinica.Helpers.Helper.TypeUser(this) == 1){%> 
-                    <a href="ListaTurnos.aspx" class="btn btn-primary">Ir a Lista Turnos</a>
-                    <a href="ListaPacientes.aspx" class="btn btn-primary">Ir a Lista Pacientes</a>
-                    <a href="ListaMedicos.aspx" class="btn btn-primary">Ir a Lista Medicos</a>
-                <%} else if (Clinica.Helpers.Helper.TypeUser(this) == 2) { %> 
-                    <a href="ListaTurnos.aspx" class="btn btn-primary">Ir a Lista Turnos</a>
-                    <a href="ListaPacientes.aspx" class="btn btn-primary">Ir a Lista Pacientes</a>
-                <%} else if (Clinica.Helpers.Helper.TypeUser(this) == 0) { %> 
-                    <a href="ListaTurnos.aspx" class="btn btn-primary">Ir a Lista Turnos</a>
-                    <a href="ListaPacientes.aspx" class="btn btn-primary">Ir a Lista Pacientes</a>
-                    <a href="ListaMedicos.aspx" class="btn btn-primary">Ir a Lista Medicos</a>
-                    <a href="LoginRegistro.aspx" class="btn btn-primary">Ir a Agregar Nuevo Usuario</a>
+                <%if (Clinica.Helpers.Helper.TypeUser(this) == 1)
+                    {%>
+                <a href="ListaTurnos.aspx" class="btn btn-primary">Ir a Lista Turnos</a>
+                <a href="ListaPacientes.aspx" class="btn btn-primary">Ir a Lista Pacientes</a>
+                <a href="ListaMedicos.aspx" class="btn btn-primary">Ir a Lista Medicos</a>
+                <%}
+                    else if (Clinica.Helpers.Helper.TypeUser(this) == 2)
+                    { %>
+                <a href="ListaTurnos.aspx" class="btn btn-primary">Ir a Lista Turnos</a>
+                <a href="ListaPacientes.aspx" class="btn btn-primary">Ir a Lista Pacientes</a>
+                <%}
+                    else if (Clinica.Helpers.Helper.TypeUser(this) == 0)
+                    { %>
+                <a href="ListaTurnos.aspx" class="btn btn-primary">Ir a Lista Turnos</a>
+                <a href="ListaPacientes.aspx" class="btn btn-primary">Ir a Lista Pacientes</a>
+                <a href="ListaMedicos.aspx" class="btn btn-primary">Ir a Lista Medicos</a>
+                <a href="LoginRegistro.aspx" class="btn btn-primary">Ir a Agregar Nuevo Usuario</a>
                 <%}%>
             </div>
+        </div>
+        <div class="row">
+            <%--<a href="#">Perfil</a>--%>
         </div>
         <%}%>
     </div>
