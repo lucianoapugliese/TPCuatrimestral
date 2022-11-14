@@ -39,10 +39,8 @@
                         <a class="nav-link" href="ListaMedicos.aspx">Medicos</a>
                         <a class="nav-link" href="ListaPacientes.aspx">Pacientes</a>
                         <%if(Clinica.Helpers.Helper.TypeUser(Page) == 1) {%> 
-                            <a class="nav-link" href="FormUsuarios.aspx">Nuevo Paciente</a>
-                        <%}%> 
-                        <%if(Clinica.Helpers.Helper.TypeUser(Page) == 2 || Clinica.Helpers.Helper.TypeUser(Page) == 1 ) {%> 
-                            <a class="nav-link" href="FormUsuarios.aspx?v=1">Nuevo Medico</a>
+                            <asp:LinkButton ID="linkFormPaciente" CssClass="nav-link" Text="Nuevo Paciente" OnClick="linkFormPaciente_Click" runat="server" />
+                            <asp:LinkButton ID="LinkFormPaciente2" CssClass="nav-link" Text="Nuevo Medico" OnClick="linkFormPaciente_Click" runat="server" />
                         <%}%> 
                     </div>
                 </div>

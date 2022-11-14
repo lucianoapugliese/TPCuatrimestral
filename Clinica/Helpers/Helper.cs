@@ -47,12 +47,29 @@ namespace Clinica.Helpers
         public static int TypeUser(Page page)
         {
             // 1 si es empleado, 2 si es medico, 0 si es admin, x si no esta logeado (temporal, ver)
-            if (page.Session["usuario"] != null)
+            int tipo = -1;
+            try
             {
-                int tipo = Convert.ToInt32( ((Profesional)page.Session["usuario"]).Nivel );
+                if (page.Session["usuario"] != null)
+                {
+                    if (page.Session["usuario"] is Admin)
+                    {
+                        tipo = Convert.ToInt32(((Admin)page.Session["usuario"]).Nivel);
+                        return tipo;
+                    }
+                    else if (page.Session["usuario"] is Profesional)
+                    {
+                        tipo = Convert.ToInt32(((Profesional)page.Session["usuario"]).Nivel);
+                        return tipo;
+                    }
+                }
                 return tipo;
             }
-            return -1;
+            catch (Exception ex)
+            {
+                throw ex; 
+            }
+            
         }
     }
 }

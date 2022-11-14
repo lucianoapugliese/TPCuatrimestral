@@ -10,10 +10,12 @@ using System.Web.UI.WebControls;
 
 namespace Clinica.Views
 {
-    public partial class FormUsuarios : System.Web.UI.Page
+    public partial class FormUsuarios : System.Web.UI.Page , IwebformsParams
     {
         //VARS
         public string Seleccion { get; set; }
+        public int Tipo { get; set; }
+
         private NegocioEspecialidad _especialidad;
         private ControlUsuarios _Control;
 
@@ -24,6 +26,7 @@ namespace Clinica.Views
             {
                 try
                 {
+                    Tipo = Helper.TypeUser(this);
                     _especialidad = new NegocioEspecialidad();
                     ddlEspecialidad.DataSource = _especialidad.listarEspecialidades();
                     ddlEspecialidad.DataBind();
@@ -94,12 +97,12 @@ namespace Clinica.Views
                 }
             }
         }
-
+        // Boton Busacar
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
 
         }
-
+        // Boton Modificar
         protected void btnModificar_Click(object sender, EventArgs e)
         {
 

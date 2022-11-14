@@ -89,6 +89,7 @@
     <Compile Include="Dominio\Turnos\Procedimiento.cs" />
     <Compile Include="Dominio\Turnos\Turno.cs" />
     <Compile Include="Helpers\Helper.cs" />
+    <Compile Include="Helpers\IwebformsParams.cs" />
     <Compile Include="Negocio\AccesoDatos.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
