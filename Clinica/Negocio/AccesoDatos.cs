@@ -18,7 +18,8 @@ namespace Clinica.Dominio
         //Constructor:
         public AccesoDatos ()
         {
-            string cadenaConexion = ConfigurationManager.ConnectionStrings["ConnStr1"].ToString();
+            //string cadenaConexion = ConfigurationManager.ConnectionStrings["ConnStr1"].ToString();
+            string cadenaConexion = "server=.\\SQLEXPRESS01; database = CLINICA_DB; integrated security = true";
             try
             {
                 _conn = new SqlConnection (cadenaConexion);
