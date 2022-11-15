@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="LoginRegistro.aspx.cs" Inherits="Clinica.Views.LoginRegistro" %>
+﻿<%@ Page Title="Usuarios" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="LoginRegistro.aspx.cs" Inherits="Clinica.Views.LoginRegistro" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -104,7 +104,7 @@
                     <div class="col">
                         <a href="LoginRegistro.aspx" class="btn-link">Cancelar</a>
                     </div>
-                </div>
+               </div>
         </div>
     </div>
 <!-- Fin -->

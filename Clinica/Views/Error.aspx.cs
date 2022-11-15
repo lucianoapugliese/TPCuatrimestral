@@ -11,13 +11,15 @@ namespace Clinica.Views
     {
         public string msg { get; set; }
         public string msg2 { get; set; }
+        public string msg3 { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
 			try
             {
-                lblError.Text = ((Exception)Session["error"]).Source;
+                lblError.Text += ((Exception)Session["error"]).Source;
                 msg = ((Exception)Session["error"]).Message;
                 msg2 = ((Exception)Session["error"]).StackTrace;
+                msg3 = ((Exception)Session["error"]).Data["error"].ToString();
             }
 			catch
 			{

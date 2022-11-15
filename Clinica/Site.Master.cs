@@ -53,7 +53,27 @@ namespace Clinica
             try
             {
                 if(Helper.IsUserLogin(Page))
-                    Response.Redirect("FormUsuarios.aspx", false);
+                {
+                    Session.Add("tipoNuevoUsuario", -1);
+                    Response.Redirect("FormUsuarios.aspx?v=paciente", false);
+                }
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                Response.Redirect("Error.aspx", false);
+            }
+        }
+
+        protected void LinkFormPaciente2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Helper.IsUserLogin(Page))
+                {
+                    Session.Add("tipoNuevoUsuario", 2);
+                    Response.Redirect("FormUsuarios.aspx?v=medico", false);
+                }
             }
             catch (Exception ex)
             {

@@ -1,15 +1,15 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormUsuarios.aspx.cs" Inherits="Clinica.Views.FormUsuarios" %>
+﻿<%@ Page Title="Nuevo Usuario" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormUsuarios.aspx.cs" Inherits="Clinica.Views.FormUsuarios" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2>Ingreso de Nuevo Usuario</h2>
+    <h2>Ingreso de Nuevo <%: Seleccion %></h2>
     <!-- Formulario -->
     <div class="row d-flex justify-content-center mb-5">
         <div class="col-6">
             <div class="mb-3">
-                <label for="ddlTipo" class="form-label">Tipo</label>
-                <%if (Request.QueryString["v"] != null){%>
+                <%if (Request.QueryString["v"].ToString() == "medico"){%>
+                    <label for="ddlTipo" class="form-label">Tipo</label>
                     <asp:DropDownList ID="ddlEspecialidad" CssClass="form-select" AutoPostBack="true" runat="server"></asp:DropDownList>
                 <%}%>
             </div>
@@ -42,8 +42,7 @@
                 <%}%>
                 <div class="m-3">
                     <asp:Button Text="Agregar" ID="btnAceptar" CssClass="btn btn-primary" OnClick="btnAceptar_Click" runat="server" />
-                    <asp:Button Text="Modificar" ID="btnBuscar" CssClass="btn btn-primary" OnClick="btnBuscar_Click" runat="server" />
-                    <asp:Button Text="Dar de Baja" ID="btnModificar" CssClass="btn btn-primary" OnClick="btnModificar_Click" runat="server" />
+                    <asp:Button Text="Modificar" ID="btnModificar" CssClass="btn btn-primary" OnClick="btnModificar_Click"  runat="server" />
                 </div>
                 <div>
                      <a href="Default.aspx">Volver</a>

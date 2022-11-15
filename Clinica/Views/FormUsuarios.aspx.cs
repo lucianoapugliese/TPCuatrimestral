@@ -26,6 +26,7 @@ namespace Clinica.Views
             {
                 try
                 {
+                    Seleccion = Request.QueryString["v"].ToString() == "paciente" ? "Paciente" : "Medico";
                     Tipo = Helper.TypeUser(this);
                     _especialidad = new NegocioEspecialidad();
                     ddlEspecialidad.DataSource = _especialidad.listarEspecialidades();
@@ -43,12 +44,12 @@ namespace Clinica.Views
         // Boton Agregar
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (Request.QueryString["v"] == null)
+            if (Convert.ToInt32(Session["tipoNuevoUsuario"]) == 2 && Session["tipoNuevoUsuario"] != null)
             {
                 try
                 {
                     Profesional medico = new Profesional(
-                        0,
+                        0, // <-- roto
                         Convert.ToInt32(txtDNI.Text),
                         txtNombre.Text,
                         txtApellido.Text,
@@ -66,11 +67,12 @@ namespace Clinica.Views
                 }
                 catch (Exception ex)
                 {
+                    ex.Data.Add("error", "Error al agregar un nuevo Medico en FormUsuarios.aspx");
                     Session.Add("error", ex);
                     Response.Redirect("Error.aspx", false);
                 }
             }
-            else
+            else if (Convert.ToInt32(Session["tipoNuevoUsuario"]) == -1 && Session["tipoNuevoUsuario"] != null)
             {
                 try
                 {
@@ -92,17 +94,18 @@ namespace Clinica.Views
                 }
                 catch (Exception ex)
                 {
+                    ex.Data.Add("error", "Error al agregar un nuevo Paciente en FormUsuarios.aspx"); 
                     Session.Add("error", ex);
                     Response.Redirect("Error.aspx", false);
                 }
             }
+            else
+            {
+                Session.Add("error", new Exception("Error de carga de usuario, tipo de usuario no establecido o nulo en FormularioUsuarios.aspx"));
+                Response.Redirect("Error.aspx", false);
+            }
         }
-        // Boton Busacar
-        protected void btnBuscar_Click(object sender, EventArgs e)
-        {
 
-        }
-        // Boton Modificar
         protected void btnModificar_Click(object sender, EventArgs e)
         {
 
