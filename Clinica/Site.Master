@@ -72,6 +72,11 @@
         <!-- Footer -->
         <footer>
             <hr>
+            <div class="row" >
+                <div class="d-flex justify-content-around">   
+                    <a href="Default.aspx">Inicio</a>
+                </div>
+            </div>
         </footer>
     </form>
     <!-- fin -->
