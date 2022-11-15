@@ -9,11 +9,11 @@
     <div class="d-flex justify-content-center">
         <div class="container m-4 p-3" id="formulario-registro">
             <div class="row d-flex justify-content-around">
-                <!-- Imputs: Id, Nombre, Apellido, Nivel, DNI, Especialidad -->
-                <div class="col-3">
-                    <div class="mb-3">
-                        <label class="form-label" style="display:none">Id</label>
-                        <asp:TextBox Text="" ID="txtId" Enabled="false" CssClass="form-control" style="display:none" runat="server" />
+                <!-- Inputs: Id, Nombre, Apellido, Nivel, DNI, Especialidad -->
+                <div class="col-3 d-flex flex-column justify-content-between">
+                    <div class="mb-3" style="display:none">
+                        <label class="form-label">Id</label>
+                        <asp:TextBox Text="" ID="txtId" Enabled="false" CssClass="form-control" runat="server" />
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Nivel</label>
@@ -40,13 +40,13 @@
                         <label class="form-label">DNI</label>
                         <asp:TextBox Text="" ID="txtDNI" CssClass="form-control" runat="server" />
                     </div>
+                </div>
+                <div class="col-3 d-flex flex-column justify-content-between">
                     <div class="mb-3">
                         <label class="form-label">Fecha Nacimiento</label>
                         <asp:TextBox Text="" ID="txtFecha" CssClass="form-control" runat="server" />
                     </div>
-                </div>
-                <!-- Imputs: Mail, Constraseña, Descripcion e Imagen -->
-                <div class="col-3">
+                <!-- Inputs: Mail, Constraseña, Descripcion e Imagen -->
                     <div class="mb-3">
                         <label class="form-label">Email</label>
                         <asp:TextBox ID="txtMail" CssClass="form-control" runat="server" />
@@ -59,15 +59,17 @@
                         <label class="form-label">Descripcion Medica</label>
                         <asp:TextBox ID="txaDescripcion" TextMode="MultiLine" CssClass="form-control" runat="server" />
                     </div>
+                </div>
+                <div class="col-3 d-flex flex-column justify-content-end">
                     <div class="mb-3"> <!-- Dejar asi x ahora los imputs de img para usar como upload de arhcivos o avatars -->
-                        <label class="form-label">Url Imagen</label>
                         <asp:UpdatePanel ID="UpdatePanelFormulario" runat="server">
                             <ContentTemplate>
-                                <div>
-                                    <asp:TextBox ID="txbUrlImg" Text="" CssClass="form-control" runat="server" />
-                                </div>
                                 <div style="margin-top: 5px">
                                     <asp:Image ID="imgFormulario" ImageUrl="../fonts/image-missing.png" Width="60%" runat="server" />
+                                </div>
+                                <label class="form-label">Url Imagen</label>
+                                <div>
+                                    <asp:TextBox ID="txbUrlImg" Text="" CssClass="form-control" runat="server" />
                                 </div>
                             </ContentTemplate>
                         </asp:UpdatePanel>
@@ -76,35 +78,55 @@
                 <!-- Fin Formulario -->
             </div>
             <!-- Botones Agregar, Modificar, Borrar, Cancelar -->
-                <div class="row">
-                    <div class="mb-3">
-                        <asp:UpdatePanel runat="server">
-                            <ContentTemplate>
-                                <div>
-                                    <asp:Button ID="btnAgregar" Text="Agregar" CssClass="btn btn-primary" OnClick="btnAgregar_Click" runat="server" />
-                                    <asp:Button ID="btnEliminar" Text="Eliminar" CssClass="btn btn-danger"  runat="server" />
-                                    <asp:Button ID="btnEliminarLogica" Text="Dar de Baja" CssClass="btn btn-warning"  runat="server" />
-                                    <asp:Button ID="btnAltaLogica" Text="Dar de Alta" CssClass="btn btn-warning"  runat="server" />
-                                    <% if (true)
-                                        {%>
-                                    <div class="mb-3" style="margin-top: 5px">
-                                        <asp:CheckBox ID="chkConfirmarEliminar" Text="Confirmar Eliminacion" runat="server" />
-                                        <asp:Button ID="btnConfirmarEliminar" Text="Eliminar" CssClass="btn btn-outline-danger" runat="server" />
-                                    </div>
-                                    <%} %>
-                                </div>
-                            </ContentTemplate>
-                        </asp:UpdatePanel>
+            <div class="container mt-3 pt-3" id="botones">
+                    <div class="row">
                         <div class="mb-3">
-                            <a href="Default.aspx" class="btn btn-link">Volver al Inicio</a>
+                            <asp:UpdatePanel runat="server">
+                                <ContentTemplate>
+                                    <div>
+                                        <div class="col d-flex justify-content-evenly mb-3">
+                                            <div class="d-grid col-2">
+                                                <asp:Button ID="btnAgregar" Text="Agregar" CssClass="btn btn-primary" OnClick="btnAgregar_Click" runat="server" />
+                                            </div>
+                                            <div class="d-grid col-2">
+                                                <asp:Button ID="btnEliminar" Text="Eliminar" CssClass="btn btn-danger"  runat="server" />
+                                            </div>
+                                            <div class="d-grid col-2">
+                                                <asp:Button ID="btnEliminarLogica" Text="Dar de Baja" CssClass="btn btn-warning"  runat="server" />
+                                            </div>
+                                            <div class="d-grid col-2">
+                                                <asp:Button ID="btnAltaLogica" Text="Dar de Alta" CssClass="btn btn-warning"  runat="server" />
+                                            </div>
+                                        </div>
+                                        <div class="col impar">
+                                            <% if (true)
+                                                {%>
+                                            <div class="mb-2 d-flex justify-content-evenly" style="margin-top: 5px">
+                                                <div class="d-flex align-self-center">
+                                                    <asp:CheckBox ID="chkConfirmarEliminar" Text=" Confirmar Eliminacion" runat="server" />
+                                                </div>
+                                                <div>
+                                                    <asp:Button ID="btnConfirmarEliminar" Text="Eliminar" CssClass="btn btn-outline-danger" runat="server" />
+                                                </div>
+                                            </div>
+                                            <%} %>
+                                        </div>
+                                    </div>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                            <div class="col">
+                                <a href="Default.aspx" class="btn btn-link">Volver al Inicio</a>
+                            </div>
                         </div>
                     </div>
+                <div class="container">
+                        <div class="row">
+                            <div class="col impar">
+                                <a href="LoginRegistro.aspx" class="btn-link">Cancelar</a>
+                            </div>
+                       </div>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <a href="LoginRegistro.aspx" class="btn-link">Cancelar</a>
-                    </div>
-               </div>
+            </div>
         </div>
     </div>
 <!-- Fin -->

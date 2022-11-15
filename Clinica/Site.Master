@@ -22,10 +22,19 @@
         font-family:Crimson text;
     }
     #formulario-registro {
-	background: linear-gradient(to left top,#45a0f0, #0ab50a);
-	color: #fff;
-	border-radius: 1rem;
-}
+	    background: linear-gradient(to left top,#45a0f0, #0ab50a);
+	    color: #fff;
+	    border-radius: 1rem;
+    }
+    #botones {
+	    background-color: rgba(0,0,0,0.75);
+	    border-radius: 1rem;
+    }
+    #botones .impar{
+	    background-color: rgba(0,0,0,0.25);
+        border-radius: 1rem;
+
+    }
 </style>
 <body>
     <!-- inicio -->
