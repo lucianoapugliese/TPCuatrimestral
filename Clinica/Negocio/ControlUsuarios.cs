@@ -151,6 +151,46 @@ namespace Clinica.Negocio
             }
         }
 
-        //
+        // Nuevo User
+        public object NewUserType(Tipo tipo)
+        {
+            if (tipo == Tipo.ADMIN || tipo == Tipo.EMPLEADO)
+                return new Admin();
+            else if (tipo == Tipo.MEDICO)
+                return new Profesional();
+            else
+                return new Paciente();
+        }
+
+        // Cargar datos Al nuevo Usuario
+
+        public object LoadNewUserData(
+            object newUser,
+            Tipo nivel,
+            string especialidad,
+            string nombre,
+            string apellido,
+            string DNI,
+            string fechaNac,
+            string mail,
+            string id = "0")
+        {
+           
+
+            return null;
+        }     
+
+
+
+        // tipo Usuario
+        private object tipoUsuario(Tipo tipo, object user) 
+        {
+            if (tipo == Tipo.ADMIN || tipo == Tipo.EMPLEADO)
+                return (Admin)user;
+            else if (tipo == Tipo.MEDICO)
+                return (Profesional)user;
+            else
+                return (Paciente)user;
+        }
     }
 }

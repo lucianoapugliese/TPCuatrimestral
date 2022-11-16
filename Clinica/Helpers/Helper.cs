@@ -43,7 +43,7 @@ namespace Clinica.Helpers
             }
         }
 
-        // Tipo de usuario por pagina
+        // Tipo de usuario por Session
         public static int TypeUser(Page page)
         {
             // 1 si es empleado, 2 si es medico, 0 si es admin, x si no esta logeado (temporal, ver)
