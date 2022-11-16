@@ -1,0 +1,44 @@
+﻿/* General */
+body {
+    font-family: Crimson text;
+}
+/* Login */
+#login {
+    background-color: #c2c7c742;
+    border-radius: 0 0 2rem 2rem;
+}
+/* Formulario de registro */
+#formulario-registro {
+    background: linear-gradient(to left top,#45a0f0, #0ab50a);
+    color: #fff;
+    border-radius: 1rem;
+}
+
+#botones {
+    background-color: rgba(0,0,0,0.75);
+    border-radius: 1rem;
+}
+
+#botones .impar {
+    background-color: rgba(0,0,0,0.25);
+    border-radius: 1rem;
+}
+
+#formulario-registro a {
+    text-decoration: none;
+    color: #87fed4;
+}
+ /* Lista de pacientes */
+#ContentPlaceHolder1_gvListaPacientes {
+    background-color: #3c8f3a;
+    color:#fff;
+    border: 5px solid groove;
+    border-radius: 1rem;
+}
+
+td, th {
+    border: 1px dotted #fff
+}
+#lista-pacientes {
+    background-color: #08ff0082;
+}

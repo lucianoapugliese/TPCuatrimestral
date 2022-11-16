@@ -102,7 +102,7 @@
                                     <div class="col impar">
                                         <% if (flagEliminarbtn)
                                             {%>
-                                        <div class="mb-2 d-flex justify-content-evenly" style="margin-top: 5px">
+                                        <div class="mb-2 d-flex justify-content-evenly pt-1 pb-1" style="margin-top: 5px">
                                             <div class="d-flex align-self-center">
                                                 <asp:CheckBox ID="chkConfirmarEliminar" Text=" Confirmar Eliminacion" runat="server" />
                                             </div>
