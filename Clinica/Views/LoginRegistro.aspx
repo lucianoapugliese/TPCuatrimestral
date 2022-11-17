@@ -9,22 +9,34 @@
     <div class="d-flex justify-content-center">
         <div class="container m-4 p-3" id="formulario-registro">
 
-            <!-- nuevo -->
-            <asp:CheckBox Text="Buscar Usuario" ID="chkBuscar" OnCheckedChanged="chkBuscar_CheckedChanged" AutoPostBack="true" runat="server" />
+            <!-- nuevo filtros de busqueda: ID, DNI -->
+            <asp:CheckBox Text="Buscar Usuario" ID="chkBuscar" AutoPostBack="true" runat="server" />
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
-                    <%if (chkBuscar.Checked) {%>   
+                    <%if (chkBuscar.Checked)
+                        {%>
                     <div class="row d-flex justify-content-around">
                         <div class="col-3 d-flex flex-column justify-content-between">
                             <div class="mb-3">
                                 <label class="form-label">Id</label>
-                                <asp:TextBox Text="" ID="TextBox1" CssClass="form-control" runat="server" />
+                                <asp:TextBox Text="" ID="txtBuscarID" CssClass="form-control" runat="server" />
                             </div>
                         </div>
                         <div class="col-3 d-flex flex-column justify-content-between">
                             <div class="mb-3">
                                 <label class="form-label">DNI</label>
-                                <asp:TextBox Text="" ID="TextBox4" CssClass="form-control" runat="server" />
+                                <asp:TextBox Text="" ID="txtBuscarDNI" CssClass="form-control" runat="server" />
+                            </div>
+                        </div>
+                        <div class="col-3 d-flex flex-column justify-content-between">
+                            <div class="mb-3">
+                                <label class="form-label">Nivel</label>
+                                <asp:DropDownList ID="ddlTipoBuscar" CssClass="form-select" AutoPostBack="true" runat="server">
+                                    <asp:ListItem Value="-1" Text="Paciente" />
+                                    <asp:ListItem Value="2" Text="Medico" />
+                                    <asp:ListItem Value="1" Text="Empleado" />
+                                    <asp:ListItem Value="0" Text="Administrador" />
+                                </asp:DropDownList>
                             </div>
                         </div>
                     </div>
@@ -33,8 +45,8 @@
             </asp:UpdatePanel>
             <!-- fin nuevo -->
 
+            <!-- Inputs: Id, Nombre, Apellido, Nivel, DNI, Especialidad -->
             <div class="row d-flex justify-content-around">
-                <!-- Inputs: Id, Nombre, Apellido, Nivel, DNI, Especialidad -->
                 <div class="col-3 d-flex flex-column justify-content-between">
                     <div class="mb-3" style="display: none">
                         <label class="form-label">Id</label>
@@ -127,7 +139,7 @@
                                     <div class="col impar">
                                         <% if (flagEliminarbtn)
                                             {%>
-                                        <div class="mb-2 d-flex justify-content-evenly" style="margin-top: 5px">
+                                        <div class="mb-2 d-flex justify-content-evenly pt-1 pb-1" style="margin-top: 5px">
                                             <div class="d-flex align-self-center">
                                                 <asp:CheckBox ID="chkConfirmarEliminar" Text=" Confirmar Eliminacion" runat="server" />
                                             </div>

@@ -99,7 +99,7 @@ namespace Clinica.Negocio
                 }
                 else if (tipo == Tipo.ADMIN)
                 {
-
+                    
                 }
                 else if (tipo == Tipo.EMPLEADO)
                 {

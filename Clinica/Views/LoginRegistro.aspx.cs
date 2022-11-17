@@ -72,9 +72,9 @@ namespace Clinica.Views
             {
                 var espElegida = ddlEspecialidad.SelectedItem.Text;
                 int idEspecialidad = ((Dictionary<string, int>)Session["idXespecialidad"])[espElegida];
-                var newUser = control.NewUserType(tipoDeRegistro());
+                var newUser = control.NewUserType(tipoDeRegistro(ddlNivel.SelectedValue));
                 control.LoadNewUserData(newUser,
-                    tipoDeRegistro(),
+                    tipoDeRegistro(ddlNivel.SelectedValue),
                     espElegida,
                     idEspecialidad,
                     txtNombre.Text,
@@ -83,7 +83,7 @@ namespace Clinica.Views
                     txtFecha.Text,
                     txtMail.Text
                     );
-                if (control.AgregarUsuario(tipoDeRegistro(), newUser, txtPass.Text))
+                if (control.AgregarUsuario(tipoDeRegistro(ddlNivel.SelectedValue), newUser, txtPass.Text))
                     Helper.Mensaje(this, "Usuario Registrado Exitosamente");
                 else
                     Helper.Mensaje(this, "Error al agregar Usuario");
@@ -110,9 +110,10 @@ namespace Clinica.Views
                 control = new ControlUsuarios();
                 try
                 {
-                    var user = control.NewUserType(Tipo.PACIENTE);
-                    if (control.ExistUser("12345678", 1, Tipo.PACIENTE, user))
+                    var user = control.NewUserType(tipoDeRegistro(ddlTipoBuscar.SelectedValue));
+                    if (control.ExistUser(txtBuscarDNI.Text, int.Parse(txtBuscarID.Text), tipoDeRegistro(ddlTipoBuscar.SelectedValue), user))
                         Helper.Mensaje(this, "Usuario encontrado");
+                    //SEGUIR CON LOGICA DE ELIMINACION
                     else
                         Helper.Mensaje(this, "Usuario no encontrado");
                 }
@@ -130,9 +131,9 @@ namespace Clinica.Views
         }
 
         //Tipo de Registro a Agregar
-        private Tipo tipoDeRegistro()
+        private Tipo tipoDeRegistro(string tipo)
         {
-            string nivelNuevoUsuario = ddlNivel.SelectedValue;
+            string nivelNuevoUsuario = tipo;
             if (nivelNuevoUsuario == "0")
                 return Tipo.ADMIN;
             else if (nivelNuevoUsuario == "1")
@@ -143,12 +144,5 @@ namespace Clinica.Views
                 return Tipo.PACIENTE;
         }
 
-        protected void chkBuscar_CheckedChanged(object sender, EventArgs e)
-        {
-            if(chkBuscar.Checked) 
-            {
-                
-            }
-        }
     }
 }
