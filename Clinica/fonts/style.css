@@ -37,8 +37,25 @@ body {
 }
 
 td, th {
-    border: 1px dotted #fff
+    border: 1px dotted #08ff0082;
 }
+
 #lista-pacientes {
     background-color: #08ff0082;
+}
+
+/* Lista de medicos */
+
+#ContentPlaceHolder1_gvEjemplo1 td, #ContentPlaceHolder1_gvEjemplo1 th {
+    border-color: #48d6fcf0;
+}
+
+#ContentPlaceHolder1_gvEjemplo1 {
+    background-color: #2641d4a3;
+    color: #fff;
+    border: 5px solid groove;
+    border-radius: 1rem;
+}
+#lista-medicos {
+    background-color: #48d6fcf0;
 }

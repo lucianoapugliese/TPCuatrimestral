@@ -30,7 +30,7 @@
 
         <!-- Lista -->
         <div class="row">
-            <h3>Lista:</h3>
+            <%--<h3 class="text-start ml-2">Lista:</h3>--%>
             <asp:GridView ID="gvListaPacientes"
                 DataKeyNames="IdPaciente"
                 CssClass="table"

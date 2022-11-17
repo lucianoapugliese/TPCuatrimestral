@@ -18,29 +18,29 @@ namespace Clinica.Negocio
             _datos = new AccesoDatos();
             try
 			{
-				Profesional profecional;
+				Profesional profesional;
 				List<Profesional> lista = new List<Profesional>();
 				_datos.setQuery("SELECT prof.IDProfesional as 'ID', per.Nombre, per.Apellido, per.DNI, esp.Nombre as 'Especialidad' FROM Personas per INNER JOIN Profesionales prof on prof.IDPersona = per.ID INNER JOIN Especialidades esp on prof.IDEspecialidad = esp.IDEspecialidad");
 				_datos.ejectuarLectura();
 
 				while( _datos.Lector.Read() )
 				{
-					profecional = new Profesional();
-					profecional.IdProfecional = Convert.ToInt16(_datos.Lector["ID"]);
+					profesional = new Profesional();
+					profesional.IdProfecional = Convert.ToInt16(_datos.Lector["ID"]);
 
                     if (_datos.Lector["Nombre"] != DBNull.Value)
-						profecional.Nombre = _datos.Lector["Nombre"].ToString();
+						profesional.Nombre = _datos.Lector["Nombre"].ToString();
 
 					if (_datos.Lector["Apellido"] != DBNull.Value)
-						profecional.Apellido = _datos.Lector["Apellido"].ToString();
+						profesional.Apellido = _datos.Lector["Apellido"].ToString();
 
                     if (_datos.Lector["DNI"] != DBNull.Value)
-                        profecional.DNI = Convert.ToInt32(_datos.Lector["DNI"]);
+                            profesional.DNI = Convert.ToInt32(_datos.Lector["DNI"]);
 
                     if (_datos.Lector["Especialidad"] != DBNull.Value)
-                        profecional.Especialidad.Nombre = _datos.Lector["Especialidad"].ToString();
+                        profesional.Especialidad.Nombre = _datos.Lector["Especialidad"].ToString();
 
-                    lista.Add(profecional);
+                    lista.Add(profesional);
 				}
 				return lista;
 			}
