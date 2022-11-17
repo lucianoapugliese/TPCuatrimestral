@@ -9,6 +9,7 @@ namespace Clinica.Dominio.Personas
     public class Paciente : Persona
     {
         public int IdPaciente { get; set; }
+        public string DescripcionMedica { get; set; }
 
         public Paciente(int id,
             string nombre,

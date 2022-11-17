@@ -13,7 +13,6 @@ namespace Clinica.Negocio
     public class ControlUsuarios
     {
         //VARS
-        private AccesoDatos _datos;
         public enum Tipo
         {
             ADMIN,
@@ -23,22 +22,23 @@ namespace Clinica.Negocio
         }
 
         //CONSTRUCTOR
-
         //METODOS
         // Autenticar y retornar usuario unico:
         public bool UserLogin(string dni, string pass, Page page)
         {
+            AccesoDatos _datos = new AccesoDatos();
             try
             {
                 Profesional profesional = null;
                 Admin administrador = null;
-                _datos = new AccesoDatos();
-                _datos.setSP("SP_ExisteUsuarioGeneral"); // <-- cambio 
+                _datos.setSP("SP_ExisteUsuarioGeneral");
                 _datos.setParametro("@DNI", dni);
                 _datos.setParametro("@pass", pass);
                 _datos.ejectuarLectura();
+                // Los unicos usuarios que se puede logear son: Medicos, Empleados(Recepcionistas) y Admins
                 if (_datos.Lector.Read())
                 {
+                    // Si el usuario existe en la bd, el registro es traido, y cargado dependiendo del tipo de nivel que tenga
                     int level = Convert.ToInt32(_datos.Lector["Nivel"]);
                     if (level == 0 || level == 1)
                     {
@@ -62,10 +62,11 @@ namespace Clinica.Negocio
                         profesional.FechaNac = Convert.ToDateTime(_datos.Lector["FechaNacimiento"]);
                         profesional.Nivel = level;
                     }
+
                     //Creamos en session ese user
-                    if(administrador != null)
+                    if (administrador != null)
                         page.Session.Add("usuario", administrador);
-                    if(profesional != null)
+                    else if (profesional != null)
                         page.Session.Add("usuario", profesional);
                     page.Session.Add("nombreUsuario", _datos.Lector["Nombre"].ToString());
                     return true;
@@ -74,6 +75,41 @@ namespace Clinica.Negocio
                 {
                     return false;
                 }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _datos.cerrarConexion();
+            }
+        }
+
+        // Buscar Usuario
+        public bool ExistUser(string dni, int id, Tipo tipo, object findUser)
+        {
+            try
+            {
+                if (tipo == Tipo.PACIENTE)
+                {
+                    NegocioPacientes negocio = new NegocioPacientes();
+                    findUser = negocio.BuscarPaciente(dni, id);
+                    return true;
+                }
+                else if (tipo == Tipo.ADMIN)
+                {
+
+                }
+                else if (tipo == Tipo.EMPLEADO)
+                {
+
+                }
+                else if (tipo == Tipo.MEDICO)
+                {
+
+                }
+                return false;
             }
             catch (Exception ex)
             {
@@ -109,12 +145,13 @@ namespace Clinica.Negocio
         // Agregar Usuario
         public bool AgregarUsuario(Tipo tipo, object userGeneric, string pass = "0")
         {
+            //Confirmamos el tipo de User a agregar, y luego llamamos a su metodos de negocio para agregar a la bd:
             try
             {
                 if (tipo == Tipo.ADMIN || tipo == Tipo.EMPLEADO)
                 {
                     Admin user = (Admin)userGeneric;
-                    user.Nivel = tipo == Tipo.ADMIN? (int)Tipo.ADMIN : (int)Tipo.EMPLEADO;
+                    user.Nivel = tipo == Tipo.ADMIN ? (int)Tipo.ADMIN : (int)Tipo.EMPLEADO;
                     NegocioAdministrador negocio = new NegocioAdministrador();
                     int idAgregado = negocio.AgregarRegistro(user, pass);
                     if (idAgregado < 1)
@@ -133,7 +170,7 @@ namespace Clinica.Negocio
                     negocio.AgregarTablaProfesionales(idAgregado, medico.Especialidad.IdEspecialidad);
                     return true;
                 }
-                else if(tipo == Tipo.PACIENTE)
+                else if (tipo == Tipo.PACIENTE)
                 {
                     Paciente paciente = (Paciente)userGeneric;
                     NegocioPacientes negocio = new NegocioPacientes();
@@ -151,7 +188,7 @@ namespace Clinica.Negocio
             }
         }
 
-        // Nuevo User
+        // Tipo de Nuevo User return
         public object NewUserType(Tipo tipo)
         {
             if (tipo == Tipo.ADMIN || tipo == Tipo.EMPLEADO)
@@ -163,11 +200,11 @@ namespace Clinica.Negocio
         }
 
         // Cargar datos Al nuevo Usuario
-
-        public object LoadNewUserData(
+        public void LoadNewUserData(
             object newUser,
             Tipo nivel,
             string especialidad,
+            int especialidadID,
             string nombre,
             string apellido,
             string DNI,
@@ -175,15 +212,55 @@ namespace Clinica.Negocio
             string mail,
             string id = "0")
         {
-           
+            try
+            {
+                if (newUser is Admin)
+                {
+                    ((Admin)newUser).IdAdmin = int.Parse(id);
+                    ((Admin)newUser).Nombre = nombre;
+                    ((Admin)newUser).Apellido = apellido;
+                    ((Admin)newUser).DNI = int.Parse(DNI);
+                    ((Admin)newUser).FechaNac = DateTime.Parse(fechaNac);
+                    ((Admin)newUser).Mail = mail;
+                    ((Admin)newUser).Nivel = Convert.ToInt32(nivel);
+                }
+                else if (newUser is Profesional)
+                {
+                    ((Profesional)newUser).IdProfecional = int.Parse(id);
+                    ((Profesional)newUser).Nombre = nombre;
+                    ((Profesional)newUser).Apellido = apellido;
+                    ((Profesional)newUser).DNI = int.Parse(DNI);
+                    ((Profesional)newUser).FechaNac = DateTime.Parse(fechaNac);
+                    ((Profesional)newUser).Especialidad.Nombre = especialidad;
+                    ((Profesional)newUser).Especialidad.IdEspecialidad = especialidadID;
+                    ((Profesional)newUser).Mail = mail;
+                    ((Profesional)newUser).Nivel = Convert.ToInt32(nivel);
+                }
+                else if (newUser is Paciente)
+                {
+                    ((Paciente)newUser).IdPaciente = int.Parse(id);
+                    ((Paciente)newUser).Nombre = nombre;
+                    ((Paciente)newUser).Apellido = apellido;
+                    ((Paciente)newUser).DNI = int.Parse(DNI);
+                    ((Paciente)newUser).FechaNac = DateTime.Parse(fechaNac);
+                    ((Paciente)newUser).Mail = mail;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
+        }
 
-            return null;
-        }     
+        // Eliminar Usuario Permanente
+        public bool ElminiarPermanenteUsuario(Tipo tipo, object userGeneric)
+        {
+            return false;
+        }
 
-
-
-        // tipo Usuario
-        private object tipoUsuario(Tipo tipo, object user) 
+        // tipo Usuario casteo
+        private object tipoUsuario(Tipo tipo, object user)
         {
             if (tipo == Tipo.ADMIN || tipo == Tipo.EMPLEADO)
                 return (Admin)user;
@@ -192,5 +269,6 @@ namespace Clinica.Negocio
             else
                 return (Paciente)user;
         }
+
     }
 }

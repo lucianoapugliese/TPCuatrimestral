@@ -4,12 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Windows.Forms;
 
 namespace Clinica.Negocio
 {
     public class NegocioEspecialidad
     {
         //VARS
+        public Dictionary<string, int> _dicEspecailidad;
         private List<Especialidad> _EspecialidadList;
         private Especialidad _especialidad;
         private AccesoDatos _datos;
@@ -18,6 +20,7 @@ namespace Clinica.Negocio
         {
             _datos = new AccesoDatos();
             _EspecialidadList = new List<Especialidad>();
+            _dicEspecailidad = new Dictionary<string, int>();
             try
             {
                 _datos.setQuery("SELECT IDEspecialidad, Nombre FROM Especialidades");
@@ -29,6 +32,7 @@ namespace Clinica.Negocio
                         _datos.Lector["Nombre"].ToString()
                         );
                     _EspecialidadList.Add(_especialidad);
+                    _dicEspecailidad.Add(_datos.Lector["Nombre"].ToString(), Convert.ToInt32(_datos.Lector["IDEspecialidad"]));
                 }
                 return _EspecialidadList;
             }
@@ -40,6 +44,11 @@ namespace Clinica.Negocio
             {
                 _datos.cerrarConexion();
             }
+        }
+
+        ~NegocioEspecialidad()
+        {
+            _datos.terminar();
         }
     }
 }

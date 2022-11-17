@@ -8,6 +8,31 @@
     <!-- Formulario -->
     <div class="d-flex justify-content-center">
         <div class="container m-4 p-3" id="formulario-registro">
+
+            <!-- nuevo -->
+            <asp:CheckBox Text="Buscar Usuario" ID="chkBuscar" OnCheckedChanged="chkBuscar_CheckedChanged" AutoPostBack="true" runat="server" />
+            <asp:UpdatePanel runat="server">
+                <ContentTemplate>
+                    <%if (chkBuscar.Checked) {%>   
+                    <div class="row d-flex justify-content-around">
+                        <div class="col-3 d-flex flex-column justify-content-between">
+                            <div class="mb-3">
+                                <label class="form-label">Id</label>
+                                <asp:TextBox Text="" ID="TextBox1" CssClass="form-control" runat="server" />
+                            </div>
+                        </div>
+                        <div class="col-3 d-flex flex-column justify-content-between">
+                            <div class="mb-3">
+                                <label class="form-label">DNI</label>
+                                <asp:TextBox Text="" ID="TextBox4" CssClass="form-control" runat="server" />
+                            </div>
+                        </div>
+                    </div>
+                    <%}%>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+            <!-- fin nuevo -->
+
             <div class="row d-flex justify-content-around">
                 <!-- Inputs: Id, Nombre, Apellido, Nivel, DNI, Especialidad -->
                 <div class="col-3 d-flex flex-column justify-content-between">
@@ -128,8 +153,8 @@
                     </div>
                 </div>
             </div>
-            <!-- Fin Botones Agregar, Modificar, Borrar, Cancelar -->
         </div>
+        <!-- Fin Botones Agregar, Modificar, Borrar, Cancelar -->
     </div>
     <!-- Fin -->
 </asp:Content>

@@ -4,6 +4,7 @@ using Clinica.Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -15,6 +16,8 @@ namespace Clinica.Views
     {
         //VARS
         ControlUsuarios control;
+        NegocioEspecialidad especialidad;
+        Dictionary<string, int> _dcIdxEspecialidad;
         public bool flagEliminarbtn { get; set; } = false;
         //LOAD
         protected void Page_Load(object sender, EventArgs e)
@@ -24,9 +27,10 @@ namespace Clinica.Views
                 control = new ControlUsuarios();
                 try
                 {
-                    NegocioEspecialidad especialidad = new NegocioEspecialidad();
+                    especialidad = new NegocioEspecialidad();
                     ddlEspecialidad.DataSource = especialidad.listarEspecialidades();
                     ddlEspecialidad.DataBind();
+                    Session.Add("idXespecialidad", especialidad._dicEspecailidad);
                 }
                 catch (Exception ex)
                 {
@@ -35,55 +39,86 @@ namespace Clinica.Views
                 }
             }
         }
-
         //METODOS
         //Cambio de filtro Tipo Usuario
         protected void ddlNivel_TextChanged(object sender, EventArgs e)
         {
             if (ddlNivel.SelectedItem.Value == "2")
+            {
                 ddlEspecialidad.Enabled = true;
+            }
             else
+            {
                 ddlEspecialidad.Enabled = false;
+            }
+
+            if (ddlNivel.SelectedItem.Value == "-1")
+            {
+                txaDescripcion.Enabled = true;
+                txtPass.Enabled = false;
+            }
+            else
+            {
+                txaDescripcion.Enabled = false;
+                txtPass.Enabled = true;
+            }
         }
 
         //Boton Agregar
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            //control = new ControlUsuarios();
-            //var tipo = ddlEspecialidad.SelectedIndex;
-            //// cambio -->
-            //var newUser = control.NewUserType(tipoDeRegistro());
-
-            //// <-- cambio
-            //try
-            //{
-            //    if (control.AgregarUsuario(Tipo.EMPLEADO, newUser, txtPass.Text))
-            //        Helper.Mensaje(this, "Usuario Registrado Exitosamente");
-            //    else
-            //        Helper.Mensaje(this, "Error al agregar Usuario");
-            //}
-            //catch (Exception ex)
-            //{
-            //    Session.Add("error", ex);
-            //    Response.Redirect("Error.aspx", false);
-            //}
+            control = new ControlUsuarios();
+            try
+            {
+                var espElegida = ddlEspecialidad.SelectedItem.Text;
+                int idEspecialidad = ((Dictionary<string, int>)Session["idXespecialidad"])[espElegida];
+                var newUser = control.NewUserType(tipoDeRegistro());
+                control.LoadNewUserData(newUser,
+                    tipoDeRegistro(),
+                    espElegida,
+                    idEspecialidad,
+                    txtNombre.Text,
+                    txtApellido.Text,
+                    txtDNI.Text,
+                    txtFecha.Text,
+                    txtMail.Text
+                    );
+                if (control.AgregarUsuario(tipoDeRegistro(), newUser, txtPass.Text))
+                    Helper.Mensaje(this, "Usuario Registrado Exitosamente");
+                else
+                    Helper.Mensaje(this, "Error al agregar Usuario");
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("error", "Error al Intentar Registrar Nuevo Usuario");
+                Session.Add("error", ex);
+                Response.Redirect("Error.aspx", false);
+            }
         }
+
         // Boton Eliminar
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
             flagEliminarbtn = true;
         }
+
         // Boton ConfirmarElminar
         protected void btnConfirmarEliminar_Click(object sender, EventArgs e)
         {
             if (chkConfirmarEliminar.Checked)
             {
+                control = new ControlUsuarios();
                 try
                 {
-
+                    var user = control.NewUserType(Tipo.PACIENTE);
+                    if (control.ExistUser("12345678", 1, Tipo.PACIENTE, user))
+                        Helper.Mensaje(this, "Usuario encontrado");
+                    else
+                        Helper.Mensaje(this, "Usuario no encontrado");
                 }
                 catch (Exception ex)
                 {
+                    ex.Data.Add("error", "Error al buscar usuario");
                     Session.Add("error", ex);
                     Response.Redirect("Error.aspx", false);
                 }
@@ -106,6 +141,14 @@ namespace Clinica.Views
                 return Tipo.MEDICO;
             else
                 return Tipo.PACIENTE;
+        }
+
+        protected void chkBuscar_CheckedChanged(object sender, EventArgs e)
+        {
+            if(chkBuscar.Checked) 
+            {
+                
+            }
         }
     }
 }

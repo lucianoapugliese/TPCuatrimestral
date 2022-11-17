@@ -15,9 +15,9 @@ namespace Clinica.Views
         //VARS
         public string Seleccion { get; set; }
         public int Tipo { get; set; }
-
         private NegocioEspecialidad _especialidad;
         private ControlUsuarios _Control;
+
 
         //LOAD
         protected void Page_Load(object sender, EventArgs e)
@@ -26,7 +26,7 @@ namespace Clinica.Views
             {
                 try
                 {
-                    Seleccion = Request.QueryString["v"].ToString() == "paciente" ? "Paciente" : "Medico";
+                    Seleccion = Request.QueryString["v"].ToString() == "paciente" ? "Paciente" : "Medico"; // sacar??
                     Tipo = Helper.TypeUser(this);
                     _especialidad = new NegocioEspecialidad();
                     ddlEspecialidad.DataSource = _especialidad.listarEspecialidades();

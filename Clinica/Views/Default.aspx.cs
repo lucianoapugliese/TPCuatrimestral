@@ -44,12 +44,12 @@ namespace Clinica.Views
             try
             {
                 ControlUsuarios control = new ControlUsuarios();
-                // Autenticar imputs <-- 
+                // Autenticar imputs <-- falta
                 if (control.UserLogin(tbxUsuario.Text, tbxContraseña.Text, this))
                 {
                     if (Session["usuario"] != null)
                     {
-                        lblNombreUsuario.Text = Session["nombreUsuario"].ToString(); //es DNI no nombre
+                        lblNombreUsuario.Text = Session["nombreUsuario"].ToString();
                         Response.Redirect("Default.aspx", false);
                     }
                 }
