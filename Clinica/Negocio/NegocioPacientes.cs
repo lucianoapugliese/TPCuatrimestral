@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Net;
 using System.Text;
+using Clinica.Helpers;
 
 namespace Clinica.Negocio
 {
@@ -14,6 +15,14 @@ namespace Clinica.Negocio
     {
         //VARS
         private AccesoDatos _datos;
+        public Paciente _user;
+
+        //CONSTRUCTOR
+        public NegocioPacientes() { }
+        public NegocioPacientes(object user) 
+        {
+            _user = (Paciente)user;
+        }
 
         //METODOS
         //Listar Pacientes:
@@ -65,10 +74,9 @@ namespace Clinica.Negocio
         }
 
         // Listar Un solo Registro
-        public Paciente BuscarPaciente(string dni, int id)
+        public Paciente BuscarPaciente(string dni, int id, object paciente)
         {
             _datos = new AccesoDatos();
-            Paciente paciente = null;
             try
             {
                 _datos.setQuery("SELECT per.ID, per.Nombre, per.Apellido, per.DNI, per.Mail, per.FechaNacimiento, per.Nivel FROM Personas per INNER JOIN Pacientes on Pacientes.IDPersona = per.ID WHERE per.ID = @Id AND per.DNI = @DNI");
@@ -79,16 +87,15 @@ namespace Clinica.Negocio
                 {
                     if (_datos.Lector["Nivel"] is DBNull)
                     {
-                        paciente = new Paciente(
-                            Convert.ToInt32(_datos.Lector["ID"]),
-                            _datos.Lector["Nombre"].ToString(),
-                            _datos.Lector["Apellido"].ToString(),
-                            Convert.ToInt32(_datos.Lector["DNI"]),
-                            _datos.Lector["Mail"].ToString(),
-                            Convert.ToDateTime(_datos.Lector["FechaNacimiento"]));
+                        ((Paciente)paciente).IdPaciente = Convert.ToInt32(_datos.Lector["ID"]);
+                        ((Paciente)paciente).Nombre = _datos.Lector["Nombre"].ToString();
+                        ((Paciente)paciente).Apellido = _datos.Lector["Apellido"].ToString();
+                        ((Paciente)paciente).DNI = Convert.ToInt32(_datos.Lector["DNI"]);
+                        ((Paciente)paciente).Mail = _datos.Lector["Mail"].ToString();
+                        ((Paciente)paciente).FechaNac = Convert.ToDateTime(_datos.Lector["FechaNacimiento"]);
                     }
                 }
-                return paciente;
+                return (Paciente)paciente;
             }
             catch(SqlException ex)
             {
@@ -152,7 +159,7 @@ namespace Clinica.Negocio
         }
 
         //Eliminar Paciente
-        public int ElminarRegistro(int id, int dni)
+        public int ElminarRegistro(int id, string dni)
         {
             _datos = new AccesoDatos();
             try
@@ -177,13 +184,13 @@ namespace Clinica.Negocio
         }
 
         // Elmiinar Paciente ID Tabla Pacientes
-        public int EliminarTablaPaciente(int idElminar)
+        public int EliminarTablaPaciente(int id)
         {
             _datos = new AccesoDatos();
             try
             {
                 _datos.setQuery("DELETE FROM Pacientes WHERE IDPersona = @Id");
-                _datos.setParametro("@Id", idElminar);
+                _datos.setParametro("@Id", id);
                 return _datos.ejecutarQuery();
             }
             catch (SqlException ex)
@@ -192,7 +199,7 @@ namespace Clinica.Negocio
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             finally
             {

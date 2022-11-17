@@ -3,6 +3,7 @@ using Clinica.Dominio.Personas;
 using Clinica.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -94,20 +95,20 @@ namespace Clinica.Negocio
                 if (tipo == Tipo.PACIENTE)
                 {
                     NegocioPacientes negocio = new NegocioPacientes();
-                    findUser = negocio.BuscarPaciente(dni, id);
+                    findUser = negocio.BuscarPaciente(dni, id, findUser);
                     return true;
                 }
-                else if (tipo == Tipo.ADMIN)
+                else if (tipo == Tipo.ADMIN || tipo == Tipo.EMPLEADO)
                 {
-                    
-                }
-                else if (tipo == Tipo.EMPLEADO)
-                {
-
+                    NegocioAdministrador negocio = new NegocioAdministrador();
+                    findUser = negocio.BuscarAdministrador(dni, id, findUser, (int)tipo);
+                    return ((Admin)findUser).IdAdmin > 0? true : false;
                 }
                 else if (tipo == Tipo.MEDICO)
                 {
-
+                    NegocioMedicos negocio = new NegocioMedicos();
+                    findUser = negocio.BuscarMedico(dni, id, findUser, (int)tipo);
+                    return ((Profesional)findUser).IdProfecional > 0 ? true : false;
                 }
                 return false;
             }
@@ -256,11 +257,43 @@ namespace Clinica.Negocio
         // Eliminar Usuario Permanente
         public bool ElminiarPermanenteUsuario(Tipo tipo, object userGeneric)
         {
-            return false;
+            int resultado = 0;
+            try
+            {
+                if(tipo == Tipo.PACIENTE)
+                {
+                    var user = castTypeUser(tipo, userGeneric);
+                    NegocioPacientes negocio = new NegocioPacientes(user);
+                    if(negocio.EliminarTablaPaciente(negocio._user.IdPaciente) > 0)
+                        resultado = negocio.ElminarRegistro(negocio._user.IdPaciente, negocio._user.DNI.ToString());
+                    return resultado > 0 ? true : false;
+                }
+                else if(tipo == Tipo.ADMIN)
+                {
+                    var user = castTypeUser(tipo, userGeneric);
+                    NegocioAdministrador negocio = new NegocioAdministrador(user);
+                    if (negocio.ElminarTablaAdmin(negocio.Usuario.IdAdmin) > 0)
+                        resultado = negocio.ElminarRegistro(negocio.Usuario.IdAdmin, negocio.Usuario.DNI.ToString());
+                    return resultado > 0 ? true : false;
+                }
+                else if(tipo == Tipo.MEDICO)
+                {
+                    var user = castTypeUser(tipo, userGeneric);
+                    NegocioMedicos negocio = new NegocioMedicos(user);
+                    if (negocio.EliminarTablaProfecionales(negocio.Usuario.IdProfecional) > 0)
+                        resultado = negocio.ElminarRegistro(negocio.Usuario.IdProfecional, negocio.Usuario.DNI.ToString());
+                    return resultado > 0 ? true : false;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         // tipo Usuario casteo
-        private object tipoUsuario(Tipo tipo, object user)
+        public object castTypeUser(Tipo tipo, object user)
         {
             if (tipo == Tipo.ADMIN || tipo == Tipo.EMPLEADO)
                 return (Admin)user;
@@ -269,6 +302,5 @@ namespace Clinica.Negocio
             else
                 return (Paciente)user;
         }
-
     }
 }

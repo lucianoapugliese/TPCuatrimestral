@@ -71,5 +71,18 @@ namespace Clinica.Helpers
             }
             
         }
+
+        // Castear Tipo de Usuario
+        public static object castType(int tipo, object obj)
+        {
+            if(tipo == -1)
+                return (Paciente)obj;
+            else if(tipo == 0 || tipo == 1)
+                return (Admin)obj;
+            else if(tipo == 2)
+                return (Profesional)obj;
+            else
+                return null;
+        }
     }
 }

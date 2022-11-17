@@ -4,15 +4,26 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Web;
 
 namespace Clinica.Negocio
 {
     public class NegocioMedicos
     {
-		//METODOS
+        //VARS
 		AccesoDatos _datos;
-		// LISTAR MEDICOS:
+        Profesional _user;
+        public Profesional Usuario { get { return _user; } }
+        //CONSTRUCTOR
+        public NegocioMedicos(object user)
+        {
+            _user = user as Profesional;
+        }
+        public NegocioMedicos() { }
+
+        //METODOS
+        // LISTAR MEDICOS:
         public List<Profesional> listarMedicos()
         {
             _datos = new AccesoDatos();
@@ -57,7 +68,7 @@ namespace Clinica.Negocio
 				_datos.cerrarConexion();
 			}
         }
-
+        // Agregar Registro
         public int AgregarRegistro(Profesional medico, string pass)
         {
 			_datos = new AccesoDatos();
@@ -86,7 +97,7 @@ namespace Clinica.Negocio
                 _datos.cerrarConexion();
             }
         }
-
+        // Agregar Profecional Tabla Profecionales
         public int AgregarTablaProfesionales(int idAgregado, int idEspecialidad)
         {
             _datos = new AccesoDatos();
@@ -96,6 +107,86 @@ namespace Clinica.Negocio
                 _datos.setParametro("@Id", idAgregado);
                 _datos.setParametro("@IdEspecialidad", idEspecialidad);
                 return _datos.ejecutarQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _datos.cerrarConexion();
+            }
+        }
+        // Buscar Medico
+        public Profesional BuscarMedico(string dni, int id, object findUser, int tipo)
+        {
+            _datos = new AccesoDatos();
+            try
+            {
+                _datos.setQuery("SELECT per.Nombre, per.Apellido, per.DNI, per.FechaNacimiento, esp.Nombre as 'Especialidad', esp.IDEspecialidad as 'IDEspecialidad',per.ID as 'IDPersona', per.Nivel, per.Pass FROM Personas per INNER JOIN Profesionales prof on prof.IDPersona = per.ID INNER JOIN Especialidades esp on prof.IDEspecialidad = esp.IDEspecialidad WHERE per.ID = @Id AND per.DNI = @DNI AND per.Nivel = @Nivel");
+                _datos.setParametro("@DNI", dni);
+                _datos.setParametro("@Id", id);
+                _datos.setParametro("@Nivel", tipo);
+                _datos.ejectuarLectura();
+                if (_datos.Lector.Read())
+                {
+                    ((Profesional)findUser).IdProfecional = Convert.ToInt32(_datos.Lector["IDPersona"]);
+                    ((Profesional)findUser).DNI = Convert.ToInt32(_datos.Lector["DNI"]);
+                    ((Profesional)findUser).FechaNac = Convert.ToDateTime(_datos.Lector["FechaNacimiento"]);
+                    ((Profesional)findUser).Nombre = _datos.Lector["Nombre"].ToString();
+                    ((Profesional)findUser).Apellido = _datos.Lector["Apellido"].ToString();
+                    ((Profesional)findUser).Nivel = Convert.ToInt32(_datos.Lector["Nivel"]);
+                    ((Profesional)findUser).Especialidad.IdEspecialidad = Convert.ToInt32(_datos.Lector["IDEspecialidad"]);
+                    ((Profesional)findUser).Especialidad.Nombre = _datos.Lector["Especialidad"].ToString();
+                }
+                return (Profesional)findUser;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _datos.cerrarConexion();
+            }
+        }
+        // Eliminar Medico Tabla Profecionales
+        public int EliminarTablaProfecionales(int id)
+        {
+            _datos = new AccesoDatos();
+            try
+            {
+                _datos.setQuery("DELETE FROM Profesionales WHERE IDPersona = @Id");
+                _datos.setParametro("@Id", id);
+                return _datos.ejecutarQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _datos.cerrarConexion();
+            }
+        }
+        // Eliminar Registro
+        public int ElminarRegistro(int id, string dni)
+        {
+            _datos = new AccesoDatos();
+            try
+            {
+                _datos.setQuery("DELETE FROM Personas WHERE ID = @Id AND DNI = @DNI");
+                _datos.setParametro("@Id", id);
+                _datos.setParametro("@DNI", dni);
+                return _datos.ejecutarQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
             }
             catch (Exception ex)
             {

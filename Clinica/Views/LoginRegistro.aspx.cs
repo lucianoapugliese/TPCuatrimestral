@@ -110,12 +110,18 @@ namespace Clinica.Views
                 control = new ControlUsuarios();
                 try
                 {
-                    var user = control.NewUserType(tipoDeRegistro(ddlTipoBuscar.SelectedValue));
-                    if (control.ExistUser(txtBuscarDNI.Text, int.Parse(txtBuscarID.Text), tipoDeRegistro(ddlTipoBuscar.SelectedValue), user))
-                        Helper.Mensaje(this, "Usuario encontrado");
-                    //SEGUIR CON LOGICA DE ELIMINACION
+                    object user = control.NewUserType(tipoDeRegistro(ddlTipoBuscar.SelectedValue));
+                    if (control.ExistUser( txtBuscarDNI.Text, int.Parse(txtBuscarID.Text), tipoDeRegistro(ddlTipoBuscar.SelectedValue), user) )
+                    {
+                        if (control.ElminiarPermanenteUsuario(tipoDeRegistro(ddlTipoBuscar.SelectedValue), user))
+                            Helper.Mensaje(this, "Usuario Eliminado Correctamente");
+                        else
+                            Helper.Mensaje(this, "No se pudo eliminar el registro");
+                    }
                     else
+                    {
                         Helper.Mensaje(this, "Usuario no encontrado");
+                    }
                 }
                 catch (Exception ex)
                 {

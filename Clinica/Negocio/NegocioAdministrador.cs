@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Web;
 
 namespace Clinica.Negocio
@@ -13,8 +14,13 @@ namespace Clinica.Negocio
         //VARS
         private AccesoDatos _datos;
         private Admin _user;
+        public Admin Usuario { get { return _user; } }
         //CONSTRUCTOR
-
+        public NegocioAdministrador(object obj)
+        {
+            _user = obj as Admin;
+        }
+        public NegocioAdministrador() { }
         //METODOS
         // LISTAR:
         public List<Admin> Listar()
@@ -25,7 +31,7 @@ namespace Clinica.Negocio
             {
                 _datos.setSP("SP_ListarAdmin");
                 _datos.ejectuarLectura();
-                while(_datos.Lector.Read())
+                while (_datos.Lector.Read())
                 {
                     _user = new Admin();
                     _user.IdAdmin = Convert.ToInt32(_datos.Lector["IDadmin"]);
@@ -37,6 +43,42 @@ namespace Clinica.Negocio
                     lista.Add(_user);
                 }
                 return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _datos.cerrarConexion();
+            }
+        }
+        // Buscar Registro:
+        public Admin BuscarAdministrador(string dni, int id, object admin, int nivel)
+        {
+            _datos = new AccesoDatos();
+            try
+            {
+                _datos.setQuery("SELECT p.ID, p.Nombre, p.Apellido, p.DNI, p.Mail, p.FechaNacimiento, p.Nivel, p.Pass FROM Personas as p INNER JOIN Administradores as a ON a.IDPersona = p.ID WHERE p.DNI = @DNI AND p.ID = @Id AND p.Nivel = @Nivel");
+                _datos.setParametro("@DNI", dni);
+                _datos.setParametro("@Id", id);
+                _datos.setParametro("@Nivel", nivel);
+                _datos.ejectuarLectura();
+                if (_datos.Lector.Read())
+                {
+                    ((Admin)admin).IdAdmin = Convert.ToInt32(_datos.Lector["ID"]);
+                    ((Admin)admin).Nombre = _datos.Lector["Nombre"].ToString();
+                    ((Admin)admin).Apellido = _datos.Lector["Apellido"].ToString();
+                    ((Admin)admin).DNI = Convert.ToInt32(_datos.Lector["DNI"]);
+                    ((Admin)admin).Mail = _datos.Lector["Mail"].ToString();
+                    ((Admin)admin).FechaNac = Convert.ToDateTime(_datos.Lector["FechaNacimiento"]);
+                    ((Admin)admin).Nivel = Convert.ToInt32(_datos.Lector["Nivel"]);
+                }
+                return (Admin)admin;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
             }
             catch (Exception ex)
             {
@@ -77,7 +119,7 @@ namespace Clinica.Negocio
             }
         }
 
-        //Agregar a tabla Admins
+        // Agregar a tabla Admins
         public int agregarTablaAdmins(int id)
         {
             _datos = new AccesoDatos();
@@ -96,5 +138,49 @@ namespace Clinica.Negocio
                 _datos.cerrarConexion();
             }
         }
+        // Elminar Registro
+        public int ElminarRegistro(int id, string dni)
+        {
+            _datos = new AccesoDatos();
+            try
+            {
+                _datos.setQuery("DELETE FROM Personas WHERE ID = @Id AND DNI = @DNI");
+                _datos.setParametro("@Id", id);
+                _datos.setParametro("@DNI", dni);
+                return _datos.ejecutarQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _datos.cerrarConexion();
+            }
+        }
+        // Eliminar Admin ID tabla Admins
+        public int ElminarTablaAdmin(int id)
+        {
+            _datos = new AccesoDatos();
+            try
+            {
+                _datos.setQuery("DELETE FROM Administradores WHERE IDPersona = @Id");
+                _datos.setParametro("@Id", id);
+                return _datos.ejecutarQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _datos.cerrarConexion();
+            }
+        }
+
     }
 }
