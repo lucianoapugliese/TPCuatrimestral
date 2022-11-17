@@ -36,7 +36,6 @@ namespace Clinica.Dominio
             //_command = _conn.CreateCommand(); //obs: ver como funciona despues
             _command = new SqlCommand();
         }
-
         //Metodos:
         //Setear Query
         public void setQuery(string query)
