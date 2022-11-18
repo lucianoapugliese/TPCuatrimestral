@@ -81,7 +81,7 @@
                 <div class="col-3 d-flex flex-column justify-content-between">
                     <div class="mb-3">
                         <label class="form-label">Fecha Nacimiento</label>
-                        <asp:TextBox Text="" ID="txtFecha" CssClass="form-control" runat="server" />
+                        <asp:TextBox Text="" ID="txtFecha" TextMode="Date" CssClass="form-control" runat="server" />
                     </div>
                     <!-- Inputs: Mail, Constraseña, Descripcion e Imagen -->
                     <div class="mb-3">
@@ -125,6 +125,9 @@
                                     <div class="col d-flex justify-content-evenly mb-3">
                                         <div class="d-grid col-2">
                                             <asp:Button ID="btnAgregar" Text="Agregar" CssClass="btn btn-primary" OnClick="btnAgregar_Click" runat="server" />
+                                        </div>
+                                        <div class="d-grid col-2">
+                                            <asp:Button ID="btnModificar" Text="Modificar" CssClass="btn btn-primary" OnClick="btnModificar_Click" Enabled="false" runat="server" />
                                         </div>
                                         <div class="d-grid col-2">
                                             <asp:Button ID="btnEliminar" Text="Eliminar" OnClick="btnEliminar_Click" CssClass="btn btn-danger" runat="server" />

@@ -70,6 +70,11 @@ namespace Clinica.Views
             control = new ControlUsuarios();
             try
             {
+                if(!control.ExistUser(txtDNI.Text)) 
+                {
+                    Helper.Mensaje(this, "Usuario ya existente");
+                    return;
+                }
                 var espElegida = ddlEspecialidad.SelectedItem.Text;
                 int idEspecialidad = ((Dictionary<string, int>)Session["idXespecialidad"])[espElegida];
                 var newUser = control.NewUserType(tipoDeRegistro(ddlNivel.SelectedValue));
@@ -150,5 +155,27 @@ namespace Clinica.Views
                 return Tipo.PACIENTE;
         }
 
+        // Modificar Registro: (en construccion :D )
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            control = new ControlUsuarios();
+            Admin admin = new Admin(); //forzado
+            try
+            {
+                if (!control.ExistUser(txtBuscarDNI.Text, int.Parse(txtBuscarID.Text), (Tipo)(int.Parse(ddlTipoBuscar.SelectedValue)), admin))
+                    Helper.Mensaje(this, "Usuario No encontrado");
+                else
+                {
+                    if (control.ModificarUsuario(Tipo.ADMIN, admin, Tipo.EMPLEADO)) //forzado
+                        Helper.Mensaje(this, "Usuario Modificado");
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("Error", "No se encontro usuario al intentar modificar");
+                Session.Add("error", ex);
+                Response.Redirect("Error.aspx", false);
+            }
+        }
     }
 }

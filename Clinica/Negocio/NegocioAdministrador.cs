@@ -118,7 +118,6 @@ namespace Clinica.Negocio
                 _datos.cerrarConexion();
             }
         }
-
         // Agregar a tabla Admins
         public int agregarTablaAdmins(int id)
         {
@@ -181,6 +180,107 @@ namespace Clinica.Negocio
                 _datos.cerrarConexion();
             }
         }
+        // Modificar Registro
+        public int ModificarUsuario(Admin updateUser, string pass)
+        {
+            _datos = new AccesoDatos();
+            try
+            {
+                _datos.setQuery("UPDATE Personas SET  Nombre = @Nombre, Apellido = @Apellido, DNI = @DNI, Mail = @Mail, FechaNacimiento = @FechaNacimiento, Nivel = @Nivel, Pass = @Pass");
+                _datos.setParametro("@Nombre", updateUser.Nombre);
+                _datos.setParametro("@Apellido", updateUser.Apellido);
+                _datos.setParametro("@DNI", updateUser.DNI);
+                _datos.setParametro("@Mail", updateUser.Mail);
+                _datos.setParametro("@FechaNacimiento", updateUser.FechaNac);
+                _datos.setParametro("@Nivel", updateUser.Nivel);
+                _datos.setParametro("@Pass", pass);
+                return _datos.ejecutarQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _datos.cerrarConexion();
+            }
+        }
+        // Modificar Tabla en Administradores
+        public int ModicarTipo(int tipo, int id, int idEspecialidad = -1)
+        {   
+            _datos = new AccesoDatos();
+            try
+            {
+                string tabla = "";
+                string queryString = "";
+                if (tipo == 1)
+                {
+                    tabla = "Administradores";
+                    queryString = $"INSERT INTO {tabla} VALUES (@Id)";
+                }
+                else if (tipo == 2)
+                {
+                    tabla = "Profesionales";
+                    queryString = $"INSERT INTO {tabla} VALUES (@Id, @IDespecialidad)";
+                    _datos.setQuery(queryString);
+                    _datos.setParametro("@Id", id);
+                    _datos.setParametro("@IDespecialidad", idEspecialidad);
+                    return _datos.ejecutarQuery();
 
+                }
+                else if (tipo == -1)
+                {
+                    tabla = "Pacientes";
+                    queryString = $"INSERT INTO {tabla} VALUES (@Id)";
+                }
+                _datos.setQuery(queryString);
+                _datos.setParametro("@Id", id);
+                return _datos.ejecutarQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _datos.cerrarConexion();
+            }
+        }
+        //Eliminar en Tabla Tipo Anterior
+        public int eliminarTipoAnterior(int tipo, int id, int idEspecialidad = -1)
+        {
+            _datos = new AccesoDatos();
+            try
+            {
+                string tabla = "";
+                string queryString = "";
+                if (tipo == 1 || tipo == 0)
+                {
+                    tabla = "Administradores";
+                    queryString = $"DELETE FROM {tabla} WHERE IDPersona = @Id";
+                }
+                else if (tipo == 2)
+                {
+                    tabla = "Profesionales";
+                    queryString = $"DELETE FROM {tabla} WHERE IDPersona = @Id";
+                }
+                else if (tipo == -1)
+                {
+                    tabla = "Pacientes";
+                    queryString = $"DELETE FROM {tabla} WHERE IDPersona = @Id";
+                }
+                _datos.setQuery(queryString);
+                _datos.setParametro("@Id", id);
+                return _datos.ejecutarQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _datos.cerrarConexion();
+            }
+        }
     }
 }

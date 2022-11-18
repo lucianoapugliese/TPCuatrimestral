@@ -21,8 +21,6 @@ namespace Clinica.Negocio
             MEDICO,
             PACIENTE = -1
         }
-
-        //CONSTRUCTOR
         //METODOS
         // Autenticar y retornar usuario unico:
         public bool UserLogin(string dni, string pass, Page page)
@@ -86,7 +84,6 @@ namespace Clinica.Negocio
                 _datos.cerrarConexion();
             }
         }
-
         // Buscar Usuario
         public bool ExistUser(string dni, int id, Tipo tipo, object findUser)
         {
@@ -117,7 +114,21 @@ namespace Clinica.Negocio
                 throw ex;
             }
         }
-
+        // Confirmas si Existe el Registro
+        public bool ExistUser(string dni)
+        {
+            try
+            {
+                NegocioPersonas negocio = new NegocioPersonas();
+                if (negocio.BuscarUsuario(dni) > 0)
+                    return true;
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         // Tipos de Registros
         public List<string> TypeUserListItem(int tipo)
         {
@@ -142,7 +153,6 @@ namespace Clinica.Negocio
             }
             return list;
         }
-
         // Agregar Usuario
         public bool AgregarUsuario(Tipo tipo, object userGeneric, string pass = "0")
         {
@@ -188,7 +198,48 @@ namespace Clinica.Negocio
                 throw ex;
             }
         }
+        // Modificar Usuario
+        public bool ModificarUsuario(Tipo tipo, object userGeneric, Tipo newTipo, string pass = "0")
+        {
+            try
+            {
+                if (tipo == Tipo.ADMIN || tipo == Tipo.EMPLEADO)
+                {
+                    Admin user = (Admin)userGeneric;
+                    user.Nivel = (tipo == Tipo.ADMIN) ? (int)Tipo.ADMIN : (int)Tipo.EMPLEADO;
+                    NegocioAdministrador negocio = new NegocioAdministrador();
+                    int idAgregado = negocio.ModificarUsuario(user, pass);
 
+                    if (idAgregado < 1)
+                        return false;
+                    if (newTipo != tipo)
+                    {
+                        int res = 0;
+                        if (negocio.ModicarTipo((int)newTipo, user.IdAdmin) > 0)
+                            res++;
+                        if(negocio.eliminarTipoAnterior((int)tipo, user.IdAdmin) > 0)
+                            res++;
+                        return (res > 1) ? true : false;
+                    }
+                    return true;
+                }
+                else if (tipo == Tipo.MEDICO)
+                {
+                    
+                    return true;
+                }
+                else if (tipo == Tipo.PACIENTE)
+                {
+                    
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         // Tipo de Nuevo User return
         public object NewUserType(Tipo tipo)
         {
@@ -199,7 +250,6 @@ namespace Clinica.Negocio
             else
                 return new Paciente();
         }
-
         // Cargar datos Al nuevo Usuario
         public void LoadNewUserData(
             object newUser,
@@ -251,9 +301,7 @@ namespace Clinica.Negocio
             {
                 throw ex;
             }
-            
         }
-
         // Eliminar Usuario Permanente
         public bool ElminiarPermanenteUsuario(Tipo tipo, object userGeneric)
         {
@@ -291,7 +339,6 @@ namespace Clinica.Negocio
                 throw ex;
             }
         }
-
         // tipo Usuario casteo
         public object castTypeUser(Tipo tipo, object user)
         {
@@ -301,6 +348,16 @@ namespace Clinica.Negocio
                 return (Profesional)user;
             else
                 return (Paciente)user;
+        }
+        // tipo Usuario casteo directo
+        public void castType(Tipo tipo, object user) 
+        {
+            if (tipo == Tipo.ADMIN || tipo == Tipo.EMPLEADO)
+                user = (Admin)user;
+            else if (tipo == Tipo.MEDICO)
+                user = (Profesional)user;
+            else
+                user = (Paciente)user;
         }
     }
 }
