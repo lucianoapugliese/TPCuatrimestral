@@ -17,18 +17,17 @@ namespace Clinica.Helpers
             MEDICO,
             PACIENTE = -1
         }
+        // Mensaje de alerta
         public static void Mensaje(Page page, string mensaje)
         {
             if (!string.IsNullOrWhiteSpace(mensaje))
                 ScriptManager.RegisterClientScriptBlock(page, page.GetType(), "alertMessage", $"alert('{mensaje}')", true);
         }
-
         // Usuario logeado o no
         public static bool IsUserLogin(Page page)
         {
             return (page.Session["usuario"] != null)? true : false;
         }
-
         // Usuario logeado o no, con msj de error
         public static bool IsUserLogin(Page page, string msjError)
         {
@@ -42,7 +41,6 @@ namespace Clinica.Helpers
                 return true;
             }
         }
-
         // Tipo de usuario por Session
         public static int TypeUser(Page page)
         {
@@ -71,7 +69,6 @@ namespace Clinica.Helpers
             }
             
         }
-
         // Castear Tipo de Usuario
         public static object castType(int tipo, object obj)
         {
@@ -83,6 +80,16 @@ namespace Clinica.Helpers
                 return (Profesional)obj;
             else
                 return null;
+        }
+        // Validar strings de entradas
+        public static bool Validar(string str)
+        {
+            if (string.IsNullOrWhiteSpace(str))
+                return false;
+            else
+                return true;
+            // continuar ...
+            // hacer otros metodos para validar 
         }
     }
 }

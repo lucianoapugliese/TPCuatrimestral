@@ -78,6 +78,7 @@ namespace Clinica.Views
                 var espElegida = ddlEspecialidad.SelectedItem.Text;
                 int idEspecialidad = ((Dictionary<string, int>)Session["idXespecialidad"])[espElegida];
                 var newUser = control.NewUserType(tipoDeRegistro(ddlNivel.SelectedValue));
+
                 control.LoadNewUserData(newUser,
                     tipoDeRegistro(ddlNivel.SelectedValue),
                     espElegida,
@@ -88,6 +89,7 @@ namespace Clinica.Views
                     txtFecha.Text,
                     txtMail.Text
                     );
+
                 if (control.AgregarUsuario(tipoDeRegistro(ddlNivel.SelectedValue), newUser, txtPass.Text))
                     Helper.Mensaje(this, "Usuario Registrado Exitosamente");
                 else
@@ -116,7 +118,7 @@ namespace Clinica.Views
                 try
                 {
                     object user = control.NewUserType(tipoDeRegistro(ddlTipoBuscar.SelectedValue));
-                    if (control.ExistUser( txtBuscarDNI.Text, int.Parse(txtBuscarID.Text), tipoDeRegistro(ddlTipoBuscar.SelectedValue), user) )
+                    if (control.ExistUser( txtBuscarDNI.Text, int.Parse(txtBuscarID.Text), tipoDeRegistro(ddlTipoBuscar.SelectedValue), user)) // cambiar por el otro metodo ?
                     {
                         if (control.ElminiarPermanenteUsuario(tipoDeRegistro(ddlTipoBuscar.SelectedValue), user))
                             Helper.Mensaje(this, "Usuario Eliminado Correctamente");

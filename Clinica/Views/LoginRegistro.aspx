@@ -126,9 +126,9 @@
                                         <div class="d-grid col-2">
                                             <asp:Button ID="btnAgregar" Text="Agregar" CssClass="btn btn-primary" OnClick="btnAgregar_Click" runat="server" />
                                         </div>
-                                        <div class="d-grid col-2">
+                                        <%--<div class="d-grid col-2">
                                             <asp:Button ID="btnModificar" Text="Modificar" CssClass="btn btn-primary" OnClick="btnModificar_Click" Enabled="false" runat="server" />
-                                        </div>
+                                        </div>--%>
                                         <div class="d-grid col-2">
                                             <asp:Button ID="btnEliminar" Text="Eliminar" OnClick="btnEliminar_Click" CssClass="btn btn-danger" runat="server" />
                                         </div>
