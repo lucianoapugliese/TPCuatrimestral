@@ -44,7 +44,7 @@ td, th {
     background-color: #08ff0082;
 }
 
-/* Lista de medicos */
+/* Lista de médicos */
 
 #ContentPlaceHolder1_gvEjemplo1 td, #ContentPlaceHolder1_gvEjemplo1 th {
     border-color: #48d6fcf0;
@@ -55,7 +55,9 @@ td, th {
     color: #fff;
     border: 5px solid groove;
     border-radius: 1rem;
-}
+}   
 #lista-medicos {
     background-color: #48d6fcf0;
 }
+
+/* Lista de turnos */
