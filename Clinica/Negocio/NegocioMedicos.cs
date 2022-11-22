@@ -198,5 +198,58 @@ namespace Clinica.Negocio
                 _datos.cerrarConexion();
             }
         }
+        // Esp x Medico
+        public List<Especialidad> listarEspecialidades(int id)
+        {
+            _datos= new AccesoDatos();
+            try
+            {
+                List<Especialidad> especialidades = new List<Especialidad>();
+                Especialidad esp;
+                int idCast = Convert.ToInt16(id);
+                _datos.setQuery("SELECT esp.Nombre, esp.IDEspecialidad FROM Especialidades as esp INNER JOIN esp_x_medico as espXmed ON esp.IDEspecialidad = espXmed.IDEsp INNER JOIN Profesionales as prof ON prof.IDProfesional = espXmed.IDMedico WHERE prof.IDPersona = @id");
+                _datos.setParametro("@id", idCast);
+                _datos.ejectuarLectura();
+                while(_datos.Lector.Read())
+                {
+                    esp = new Especialidad();
+                    esp.IdEspecialidad = Convert.ToInt32(_datos.Lector["IdEspecialidad"]);
+                    esp.Nombre = _datos.Lector["Nombre"].ToString();
+                    especialidades.Add(esp);
+                }
+                return especialidades;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _datos.cerrarConexion();
+            }
+        }
+        // Eliminar Medico Tabla espXmed
+        public int EliminarTablaEspXmed(int id)
+        {
+            _datos = new AccesoDatos();
+            try
+            {
+                _datos.setQuery("DELETE FROM esp_x_medico WHERE (SELECT prof.IDProfesional FROM Profesionales as prof WHERE prof.IDPersona = @Id) = esp_x_medico.IDMedico");
+                _datos.setParametro("@Id", id);
+                return _datos.ejecutarQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _datos.cerrarConexion();
+            }
+        }
     }
 }

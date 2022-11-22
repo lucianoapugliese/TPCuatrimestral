@@ -9,17 +9,25 @@
     <div class="d-flex justify-content-center">
         <div class="container m-4 p-3" id="formulario-registro">
 
+            <div class="row justify-content-center" style="margin-bottom: 10px">
+                <div class="col">
+                    <asp:Button Text="Ver Todos los Usuarios" ID="btnListaUsuarios" CssClass="btn btn-primary" AutoPostback="false" runat="server" />
+                </div>
+            </div>
             <!-- Botones Collapse -->
-            <asp:UpdatePanel runat="server">
-                <ContentTemplate>
-                    <p>
-                        <asp:Button Text="Opciones Usuarios" ID="btnBuscarFiltro" CssClass="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#filtrosDeBusqueda" aria-expanded="false" aria-controls="filtrosDeBusqueda" runat="server" />
-                        <%--<button class="btn btn-terciary" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2"> Buscar/Agregar</button>--%>
-                        <asp:Button Text="Agregar Usuario" ID="btnAgregarFiltro" CssClass="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2" OnClick="btnAgregarFiltro_Click" runat="server" />
-                        <a class="btn btn-secondary" href="LoginRegistro.aspx">Resetear Filtros</a>
-                    </p>
-                </ContentTemplate>
-            </asp:UpdatePanel>
+            <div class="row">
+                <div class="col">
+                    <asp:UpdatePanel runat="server">
+                        <ContentTemplate>
+                            <p>
+                                <asp:Button Text="Opciones Usuarios" ID="btnBuscarFiltro" CssClass="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#filtrosDeBusqueda" aria-expanded="false" aria-controls="filtrosDeBusqueda" runat="server" />
+                                <asp:Button Text="Agregar Usuario" ID="btnAgregarFiltro" CssClass="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2" OnClick="btnAgregarFiltro_Click" runat="server" />
+                                <a class="btn btn-secondary" href="LoginRegistro.aspx">Resetear Filtros</a>
+                            </p>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+            </div>
             <div class="row">
                 <div class="col">
                     <div class="collapse multi-collapse" id="filtrosDeBusqueda">
@@ -49,18 +57,19 @@
                                     </asp:DropDownList>
                                 </div>
                             </div>
-                            <div class="row justify-content-center">
-                                <div class="col-4">
-                                    <asp:UpdatePanel runat="server">
-                                        <ContentTemplate>
-                                            <asp:Button Text="Buscar" ID="btnBuscarFiltroExp" CssClass="btn btn-primary" OnClick="btnBuscarFiltroExp_Click" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2" runat="server" />
-                                            <asp:Button Text="Modificar" ID="btnModificarFiltro" CssClass="btn btn-primary" OnClick="btnModificarFiltro_Click"  runat="server" />
+                            <asp:UpdatePanel runat="server">
+                                <ContentTemplate>
+                                    <div class="row justify-content-center">
+                                        <div class="col-4">
+                                            <asp:Button Text="Buscar" ID="btnBuscarFiltroExp" CssClass="btn btn-primary" OnClick="btnBuscarFiltroExp_Click" runat="server" />
+                                            <asp:Button Text="Modificar" ID="btnModificarFiltro" CssClass="btn btn-primary" OnClick="btnModificarFiltro_Click" runat="server" />
                                             <asp:Button Text="Eliminar" ID="btnEliminarFiltro" CssClass="btn btn-primary" OnClick="btnEliminarFiltro_Click" runat="server" />
                                             <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Expandir</button>
-                                        </ContentTemplate>
-                                    </asp:UpdatePanel>
-                                </div>
-                            </div>
+                                        </div>
+                                        <asp:Label Text="" ID="lblResultadoBusqueda" runat="server" />
+                                    </div>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
                         </div>
                         <!-- fin filtros -->
 
@@ -90,10 +99,17 @@
                                                 <asp:ListItem Value="0" Text="Administrador" />
                                             </asp:DropDownList>
                                         </div>
+                                        <%if (flagMedico) {%> 
                                         <div class="mb-3">
                                             <asp:Label Text="Especialidad" ID="lblEspecialidad" CssClass="form-label" runat="server" />
                                             <asp:DropDownList ID="ddlEspecialidad" Enabled="false" CssClass="form-select" runat="server"></asp:DropDownList>
+                                            <asp:Button Text="Agregar Otra Especialidad" ID="btnAgregarEspecialidad" CssClass="btn btn-terciary" runat="server" />
                                         </div>
+                                        <div class="mb-3">
+                                            <asp:DataGrid ID="listGridEsp" CssClass="table" runat="server">
+                                            </asp:DataGrid>
+                                        </div>
+                                        <%}%>
                                         <div class="mb-3">
                                             <label class="form-label">Nombre</label>
                                             <asp:TextBox Text="" ID="txtNombre" CssClass="form-control" runat="server" />
@@ -108,11 +124,11 @@
                                         </div>
                                     </div>
                                     <div class="col-3 d-flex flex-column justify-content-between">
+                                        <!-- Inputs: Mail, fecha, horario de trabajo (solo medicos), Constraseña, Descripcion e Imagen -->
                                         <div class="mb-3">
                                             <label class="form-label">Fecha Nacimiento</label>
                                             <asp:TextBox Text="" ID="txtFecha" TextMode="Date" CssClass="form-control" runat="server" />
                                         </div>
-                                        <!-- Inputs: Mail, Constraseña, Descripcion e Imagen -->
                                         <div class="mb-3">
                                             <label class="form-label">Email</label>
                                             <asp:TextBox ID="txtMail" CssClass="form-control" runat="server" />
@@ -121,6 +137,13 @@
                                             <asp:Label Text="Contraseña" ID="lblPass" CssClass="form-label" runat="server" />
                                             <asp:TextBox ID="txtPass" CssClass="form-control" runat="server" />
                                         </div>
+                                        <%if(flagMedico) {%> 
+                                        <div class="mb-3">
+                                            <label class="form-label">Turno de Trabajo</label>
+                                            <asp:TextBox Text="" ID="txtHorario" TextMode="Time" CssClass="form-control" runat="server" />
+                                            <asp:Button Text="Agregar Otro Horario de Trabajo" CssClass="btn btn-terciary" runat="server" />
+                                        </div>
+                                        <%}%>
                                         <div class="mb-3">
                                             <asp:Label Text="Descripcion Medica" ID="lblDescripcion" CssClass="form-label" runat="server" />
                                             <asp:TextBox ID="txaDescripcion" TextMode="MultiLine" CssClass="form-control" runat="server" />

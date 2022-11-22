@@ -105,6 +105,7 @@ namespace Clinica.Negocio
                 {
                     NegocioMedicos negocio = new NegocioMedicos();
                     findUser = negocio.BuscarMedico(dni, id, findUser, (int)tipo);
+                    ((Profesional)findUser).listaEsp = negocio.listarEspecialidades(id);
                     return ((Profesional)findUser).IdProfecional > 0 ? true : false;
                 }
                 return false;
@@ -208,8 +209,8 @@ namespace Clinica.Negocio
                     Admin user = (Admin)userGeneric;
                     user.Nivel = (tipo == Tipo.ADMIN) ? (int)Tipo.ADMIN : (int)Tipo.EMPLEADO;
                     NegocioAdministrador negocio = new NegocioAdministrador();
+                    return false; // forzado
                     int idAgregado = negocio.ModificarUsuario(user, pass);
-
                     if (idAgregado < 1)
                         return false;
                     if (newTipo != tipo)
@@ -328,8 +329,10 @@ namespace Clinica.Negocio
                 {
                     var user = castTypeUser(tipo, userGeneric);
                     NegocioMedicos negocio = new NegocioMedicos(user);
-                    if (negocio.EliminarTablaProfecionales(negocio.Usuario.IdProfecional) > 0)
+                    if (negocio.EliminarTablaEspXmed(negocio.Usuario.IdProfecional) > 0 && negocio.EliminarTablaProfecionales(negocio.Usuario.IdProfecional) > 0)
+                    {
                         resultado = negocio.ElminarRegistro(negocio.Usuario.IdProfecional, negocio.Usuario.DNI.ToString());
+                    }
                     return resultado > 0 ? true : false;
                 }
                 return false;

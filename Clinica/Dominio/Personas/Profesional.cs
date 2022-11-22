@@ -9,6 +9,7 @@ namespace Clinica.Dominio.Personas
     {
         public int IdProfecional { get; set; }
         public Especialidad Especialidad { get; set; }
+        public List<Especialidad> listaEsp { get; set; }
 
         public Profesional(int id, 
             int dni,

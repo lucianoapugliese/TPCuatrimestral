@@ -15,6 +15,15 @@ namespace Clinica.Views
     {
 
         /// <summary>
+        /// btnListaUsuarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnListaUsuarios;
+
+        /// <summary>
         /// btnBuscarFiltro control.
         /// </summary>
         /// <remarks>
@@ -87,6 +96,15 @@ namespace Clinica.Views
         protected global::System.Web.UI.WebControls.Button btnEliminarFiltro;
 
         /// <summary>
+        /// lblResultadoBusqueda control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblResultadoBusqueda;
+
+        /// <summary>
         /// txtId control.
         /// </summary>
         /// <remarks>
@@ -121,6 +139,24 @@ namespace Clinica.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlEspecialidad;
+
+        /// <summary>
+        /// btnAgregarEspecialidad control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAgregarEspecialidad;
+
+        /// <summary>
+        /// listGridEsp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataGrid listGridEsp;
 
         /// <summary>
         /// txtNombre control.
@@ -184,6 +220,15 @@ namespace Clinica.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPass;
+
+        /// <summary>
+        /// txtHorario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtHorario;
 
         /// <summary>
         /// lblDescripcion control.

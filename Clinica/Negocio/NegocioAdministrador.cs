@@ -186,7 +186,8 @@ namespace Clinica.Negocio
             _datos = new AccesoDatos();
             try
             {
-                _datos.setQuery("UPDATE Personas SET  Nombre = @Nombre, Apellido = @Apellido, DNI = @DNI, Mail = @Mail, FechaNacimiento = @FechaNacimiento, Nivel = @Nivel, Pass = @Pass");
+                _datos.setQuery("UPDATE Personas SET  Nombre = @Nombre, Apellido = @Apellido, DNI = @DNI, Mail = @Mail, FechaNacimiento = @FechaNacimiento, Nivel = @Nivel, Pass = @Pass WHERE DNI = '@DNI' AND ID = @ID");
+                _datos.setParametro("@ID", updateUser.IdAdmin);
                 _datos.setParametro("@Nombre", updateUser.Nombre);
                 _datos.setParametro("@Apellido", updateUser.Apellido);
                 _datos.setParametro("@DNI", updateUser.DNI);
