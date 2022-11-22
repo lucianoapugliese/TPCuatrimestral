@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListaPacientes.aspx.cs" Inherits="Clinica.Views.ListaPacientes" %>
+﻿<%@ Page Title="Pacientes" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListaPacientes.aspx.cs" Inherits="Clinica.Views.ListaPacientes" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -44,7 +44,7 @@
                     <asp:BoundField HeaderText="DNI" DataField="DNI" />
                     <asp:BoundField HeaderText="Mail" DataField="Mail" />
                     <asp:BoundField HeaderText="Fecha Nacimiento" DataField="FechaNac" />
-                    <asp:ButtonField ButtonType="Button" CommandName="seleccionPaciente" Text="Seleccionar" />
+                    <asp:ButtonField ButtonType="Button" CommandName="seleccionPaciente" Text="Seleccionar" ControlStyle-CssClass="btn btn-outline-light" />
                 </Columns>
             </asp:GridView>
         </div>
