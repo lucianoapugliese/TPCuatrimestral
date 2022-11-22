@@ -17,11 +17,16 @@ namespace Clinica.Helpers
             MEDICO,
             PACIENTE = -1
         }
-        // Mensaje de alerta
+        // Mensajes de alerta:
         public static void Mensaje(Page page, string mensaje)
         {
             if (!string.IsNullOrWhiteSpace(mensaje))
                 ScriptManager.RegisterClientScriptBlock(page, page.GetType(), "alertMessage", $"alert('{mensaje}')", true);
+        }
+        public static void Mensaje(Page page, string mensaje, string url)
+        {
+            if (!string.IsNullOrWhiteSpace(mensaje))
+                ScriptManager.RegisterClientScriptBlock(page, page.GetType(), "alertMessage", $"alert('{mensaje}');window.location ='{url}'", true);
         }
         // Usuario logeado o no
         public static bool IsUserLogin(Page page)

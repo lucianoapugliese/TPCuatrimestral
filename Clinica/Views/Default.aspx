@@ -57,7 +57,7 @@
                 <a href="ListaTurnos.aspx" class="btn btn-primary">Ir a Lista Turnos</a>
                 <a href="ListaPacientes.aspx" class="btn btn-primary">Ir a Lista Pacientes</a>
                 <a href="ListaMedicos.aspx" class="btn btn-primary">Ir a Lista Medicos</a>
-                <a href="LoginRegistro.aspx" class="btn btn-primary">Ir a Agregar Nuevo Usuario</a>
+                <a href="LoginRegistro.aspx" class="btn btn-primary">Ir a Opciones de Usuarios</a>
                 <%}%>
             </div>
         </div>

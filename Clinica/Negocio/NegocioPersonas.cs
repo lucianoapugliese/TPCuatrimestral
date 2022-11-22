@@ -17,7 +17,7 @@ namespace Clinica.Negocio
             _datos = new AccesoDatos();
             try
             {
-                _datos.setQuery("SELECT ID FROM Personas WHERE DNI = @DNI");
+                _datos.setQuery("SELECT ID FROM Personas WHERE DNI = '@DNI'");
                 _datos.setParametro("@DNI", dni);
                 return _datos.ejecutarQuery();
             }

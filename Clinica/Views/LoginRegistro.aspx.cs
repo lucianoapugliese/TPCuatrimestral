@@ -45,22 +45,28 @@ namespace Clinica.Views
         {
             if (ddlNivel.SelectedItem.Value == "2")
             {
-                ddlEspecialidad.Enabled = true;
+                lblEspecialidad.Visible = true;
+                ddlEspecialidad.Visible = true;
             }
             else
             {
-                ddlEspecialidad.Enabled = false;
+                lblEspecialidad.Visible = false;
+                ddlEspecialidad.Visible = false;
             }
 
             if (ddlNivel.SelectedItem.Value == "-1")
             {
-                txaDescripcion.Enabled = true;
-                txtPass.Enabled = false;
+                lblDescripcion.Visible = true;
+                txaDescripcion.Visible = true;
+                lblPass.Visible = false;
+                txtPass.Visible = false;
             }
             else
             {
-                txaDescripcion.Enabled = false;
-                txtPass.Enabled = true;
+                lblDescripcion.Visible = false;
+                txaDescripcion.Visible = false;
+                lblPass.Visible = true;
+                txtPass.Visible = true;
             }
         }
 
@@ -177,6 +183,104 @@ namespace Clinica.Views
                 ex.Data.Add("Error", "No se encontro usuario al intentar modificar");
                 Session.Add("error", ex);
                 Response.Redirect("Error.aspx", false);
+            }
+        }
+
+        
+
+        // Boton Agregar (en Filtro)
+        protected void btnAgregarFiltro_Click(object sender, EventArgs e)
+        {
+            btnModificar.Visible = false;
+            btnEliminar.Visible = false;
+            btnAltaLogica.Visible = false;
+            btnEliminarLogica.Visible = false;
+        }
+
+        // Botono BuscarExp (en Filro)
+        protected void btnBuscarFiltroExp_Click(object sender, EventArgs e)
+        {
+            btnModificar.Visible = true;
+            btnEliminar.Visible = true;
+            btnAltaLogica.Visible = true;
+            btnEliminarLogica.Visible = true;
+
+            control = new ControlUsuarios();
+            var user = control.NewUserType((Tipo)int.Parse(ddlTipoBuscar.SelectedValue));
+            try
+            {
+                if(control.ExistUser(txtBuscarDNI.Text, int.Parse(txtBuscarID.Text), (Tipo)int.Parse(ddlTipoBuscar.SelectedValue), user))
+                {
+                    
+                    CargarCamposUsuario(user, (Tipo)int.Parse(ddlTipoBuscar.SelectedValue));
+                    if (txtId.Text == "0" && txtDNI.Text == "0")
+                    {
+                        Helper.Mensaje(this, "Usuario No Encontrado", "LoginRegistro.aspx");
+                    }
+                    else
+                    {
+                        Helper.Mensaje(this, "Usuario encontrado");
+                        btnAgregar.Enabled = false;
+                    }
+                }
+                else
+                {
+                    Helper.Mensaje(this, "Usuario No encontrado", "LoginRegistro.aspx");
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("error", "Error al intentar buscar usuario");
+                Session.Add("error", ex);
+                Response.Redirect("Error.aspx", false);
+            }
+        }
+
+        // Boton Modificar (en filtro)
+        protected void btnModificarFiltro_Click(object sender, EventArgs e)
+        {
+
+        }
+        // Boton Eliminar (en filtro)
+        protected void btnEliminarFiltro_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // Carga de campos desde Usuario encontrado
+        private void CargarCamposUsuario(object user, Tipo tipo)
+        {
+            if (tipo == Tipo.ADMIN || tipo == Tipo.EMPLEADO)
+            {
+                txtId.Text = ((Admin)user).IdAdmin.ToString();
+                txtNombre.Text = ((Admin)user).Nombre;
+                txtApellido.Text = ((Admin)user).Apellido;
+                ddlNivel.SelectedValue = ((Admin)user).Nivel.ToString();
+                txtDNI.Text = ((Admin)user).DNI.ToString();
+                txtMail.Text = ((Admin)user).Mail;
+            }
+            else if (tipo == Tipo.MEDICO)
+            {
+                txtId.Text = ((Profesional)user).IdProfecional.ToString();
+                txtNombre.Text = ((Profesional)user).Nombre;
+                txtApellido.Text = ((Profesional)user).Apellido;
+                ddlNivel.SelectedValue = ((Profesional)user).Nivel.ToString();
+                ddlEspecialidad.SelectedValue = ((Profesional)user).Especialidad.Nombre.ToString();
+                txtDNI.Text = ((Profesional)user).DNI.ToString();
+                txtMail.Text = ((Profesional)user).Mail;
+                txtFecha.TextMode = TextBoxMode.Date;
+                txtFecha.Text = ((Profesional)(user)).FechaNac.ToString();
+                
+            }
+            else if (tipo == Tipo.PACIENTE)
+            {
+                txtId.Text = ((Paciente)user).IdPaciente.ToString();
+                txtNombre.Text = ((Paciente)user).Nombre;
+                txtApellido.Text = ((Paciente)user).Apellido;
+                ddlNivel.SelectedValue = ((Paciente)user).Nivel.ToString();
+                txtDNI.Text = ((Paciente)user).DNI.ToString();
+                txtMail.Text = ((Paciente)user).Mail;
             }
         }
     }

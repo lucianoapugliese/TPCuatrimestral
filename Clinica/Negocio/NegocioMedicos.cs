@@ -123,7 +123,7 @@ namespace Clinica.Negocio
             _datos = new AccesoDatos();
             try
             {
-                _datos.setQuery("SELECT per.Nombre, per.Apellido, per.DNI, per.FechaNacimiento, esp.Nombre as 'Especialidad', esp.IDEspecialidad as 'IDEspecialidad',per.ID as 'IDPersona', per.Nivel, per.Pass FROM Personas per INNER JOIN Profesionales prof on prof.IDPersona = per.ID INNER JOIN Especialidades esp on prof.IDEspecialidad = esp.IDEspecialidad WHERE per.ID = @Id AND per.DNI = @DNI AND per.Nivel = @Nivel");
+                _datos.setQuery("SELECT per.Nombre, per.Apellido, per.DNI, per.FechaNacimiento, per.Mail, esp.Nombre as 'Especialidad', esp.IDEspecialidad as 'IDEspecialidad',per.ID as 'IDPersona', per.Nivel, per.Pass FROM Personas per INNER JOIN Profesionales prof on prof.IDPersona = per.ID INNER JOIN Especialidades esp on prof.IDEspecialidad = esp.IDEspecialidad WHERE IDPersona = @Id AND per.DNI = @DNI AND per.Nivel = @Nivel");
                 _datos.setParametro("@DNI", dni);
                 _datos.setParametro("@Id", id);
                 _datos.setParametro("@Nivel", tipo);
@@ -138,6 +138,7 @@ namespace Clinica.Negocio
                     ((Profesional)findUser).Nivel = Convert.ToInt32(_datos.Lector["Nivel"]);
                     ((Profesional)findUser).Especialidad.IdEspecialidad = Convert.ToInt32(_datos.Lector["IDEspecialidad"]);
                     ((Profesional)findUser).Especialidad.Nombre = _datos.Lector["Especialidad"].ToString();
+                    ((Profesional)findUser).Mail = _datos.Lector["Mail"].ToString();
                 }
                 return (Profesional)findUser;
             }

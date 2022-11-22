@@ -15,13 +15,22 @@ namespace Clinica.Views
     {
 
         /// <summary>
-        /// chkBuscar control.
+        /// btnBuscarFiltro control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkBuscar;
+        protected global::System.Web.UI.WebControls.Button btnBuscarFiltro;
+
+        /// <summary>
+        /// btnAgregarFiltro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAgregarFiltro;
 
         /// <summary>
         /// txtBuscarID control.
@@ -51,6 +60,33 @@ namespace Clinica.Views
         protected global::System.Web.UI.WebControls.DropDownList ddlTipoBuscar;
 
         /// <summary>
+        /// btnBuscarFiltroExp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBuscarFiltroExp;
+
+        /// <summary>
+        /// btnModificarFiltro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModificarFiltro;
+
+        /// <summary>
+        /// btnEliminarFiltro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEliminarFiltro;
+
+        /// <summary>
         /// txtId control.
         /// </summary>
         /// <remarks>
@@ -67,6 +103,15 @@ namespace Clinica.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlNivel;
+
+        /// <summary>
+        /// lblEspecialidad control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEspecialidad;
 
         /// <summary>
         /// ddlEspecialidad control.
@@ -123,6 +168,15 @@ namespace Clinica.Views
         protected global::System.Web.UI.WebControls.TextBox txtMail;
 
         /// <summary>
+        /// lblPass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPass;
+
+        /// <summary>
         /// txtPass control.
         /// </summary>
         /// <remarks>
@@ -130,6 +184,15 @@ namespace Clinica.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPass;
+
+        /// <summary>
+        /// lblDescripcion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDescripcion;
 
         /// <summary>
         /// txaDescripcion control.
@@ -175,6 +238,15 @@ namespace Clinica.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAgregar;
+
+        /// <summary>
+        /// btnModificar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModificar;
 
         /// <summary>
         /// btnEliminar control.
