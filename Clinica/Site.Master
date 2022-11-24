@@ -39,11 +39,9 @@
             </div>
 
             <div class="card" style="width: 18rem; margin-right: 4px">
-                <div class="card-header">
-                    Usuario: 
-                    <asp:Label ID="lblUsuario" Text="" runat="server" />
-                    Nivel:
-                    <asp:Label ID="lblNivelUsuario" Text="" runat="server" />
+                <div class="card-header d-flex pb-0 justify-content-center">
+                    <p class="mb-2 p-1 p-inicio-sesion" style="margin-right:1rem;background-color: #edf41c; border-radius: 5px"> Usuario: <asp:Label ID="lblUsuario" Text="" runat="server" /> </p>
+                    <p class="mb-2 p-1 p-inicio-sesion" style="background-color: #edf41c; border-radius: 5px;">Nivel: <asp:Label ID="lblNivelUsuario" Text="" runat="server" /> </p>
                 </div>
                 <asp:Button Text="Cerrar Sesion" ID="btnCerrarSesionMaster" OnClick="btnCerrarSesionMaster_Click" runat="server" />
             </div>
