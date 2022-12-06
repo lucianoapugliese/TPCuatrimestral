@@ -36,34 +36,38 @@
             else
             {%>
         <!-- Opciones: -->
-        <div class="row">
-            <h4>Bienvenido 
-                <asp:Label ID="lblNombreUsuario" Text="" runat="server" />
-            </h4>
-            <div class="col">
-                <%if (Clinica.Helpers.Helper.TypeUser(this) == 1)
-                    {%>
-                <a href="ListaTurnos.aspx" class="btn btn-primary">Ir a Lista Turnos</a>
-                <a href="ListaPacientes.aspx" class="btn btn-primary">Ir a Lista Pacientes</a>
-                <a href="ListaMedicos.aspx" class="btn btn-primary">Ir a Lista Medicos</a>
-                <%}
-                    else if (Clinica.Helpers.Helper.TypeUser(this) == 2)
-                    { %>
-                <a href="ListaTurnos.aspx" class="btn btn-primary">Ir a Lista Turnos</a>
-                <a href="ListaPacientes.aspx" class="btn btn-primary">Ir a Lista Pacientes</a>
-                <%}
-                    else if (Clinica.Helpers.Helper.TypeUser(this) == 0)
-                    { %>
-                <a href="ListaTurnos.aspx" class="btn btn-primary">Ir a Lista Turnos</a>
-                <a href="ListaPacientes.aspx" class="btn btn-primary">Ir a Lista Pacientes</a>
-                <a href="ListaMedicos.aspx" class="btn btn-primary">Ir a Lista Medicos</a>
-                <a href="LoginRegistro.aspx" class="btn btn-primary">Ir a Opciones de Usuarios</a>
-                <%}%>
+        <div class="col">
+            <div class="row">
+                <h4>Bienvenido 
+                    <asp:Label ID="lblNombreUsuario" Text="" runat="server" />
+                </h4>
+                <div class="col d-flex justify-content-center">
+                    <%if (Clinica.Helpers.Helper.TypeUser(this) == 1)
+                        {%>
+                    <a href="ListaTurnos.aspx" class="btn btn-primary my-4 py-3">Ir a Lista Turnos</a>
+                    <a href="ListaPacientes.aspx" class="btn btn-primary my-4 py-3">Ir a Lista Pacientes</a>
+                    <a href="ListaMedicos.aspx" class="btn btn-primary my-4 py-3">Ir a Lista Medicos</a>
+                    <%}
+                        else if (Clinica.Helpers.Helper.TypeUser(this) == 2)
+                        { %>
+                    <a href="ListaTurnos.aspx" class="btn btn-primary my-4 py-3">Ir a Lista Turnos</a>
+                    <a href="ListaPacientes.aspx" class="btn btn-primary my-4 py-3">Ir a Lista Pacientes</a>
+                    <%}
+                        else if (Clinica.Helpers.Helper.TypeUser(this) == 0)
+                        { %>
+                    <div class="col-8 d-flex justify-content-center flex-column">
+                            <a href="ListaTurnos.aspx" class="btn btn-primary my-4 py-3">Ir a Lista Turnos</a>
+                            <a href="ListaPacientes.aspx" class="btn btn-primary my-4 py-3">Ir a Lista Pacientes</a>
+                            <a href="ListaMedicos.aspx" class="btn btn-primary my-4 py-3">Ir a Lista Medicos</a>
+                            <a href="LoginRegistro.aspx" class="btn btn-primary my-4 py-3">Ir a Opciones de Usuarios</a>
+                    </div>
+                    <%}%>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <%--<a href="#">Perfil</a>--%>
-        </div>
+        <%--<div class="row">
+            <%--<a href="#">Perfil</a>
+        </div> --%>
         <%}%>
     </div>
 </asp:Content>

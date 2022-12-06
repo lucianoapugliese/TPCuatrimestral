@@ -68,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\image-missing.png" />
-    <Content Include="fonts\style.css" />
+    <Content Include="style.css" />
     <Content Include="Global.asax" />
     <Content Include="Views\Default.aspx" />
     <Content Include="Views\Error.aspx" />

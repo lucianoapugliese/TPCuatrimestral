@@ -1,4 +1,5 @@
-﻿/* General */
+﻿
+/* General */
 body {
     font-family: Crimson text;
 }
@@ -14,6 +15,7 @@ body {
 #login {
     background-color: #c2c7c742;
     border-radius: 0 0 2rem 2rem;
+    height:550px;
 }
 /* Formulario de registro */
 #formulario-registro {
